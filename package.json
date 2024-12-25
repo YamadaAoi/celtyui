@@ -1,6 +1,6 @@
 {
-  "name": "vtsc",
-  "version": "1.0.3",
+  "name": "vtscadd",
+  "version": "1.0.0",
   "description": "vue3+ts+scss源码组件库",
   "exports": "./es/index.mjs",
   "bin": "./es/index.mjs",
@@ -36,7 +36,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YamadaAoi/vtsc"
+    "url": "https://github.com/YamadaAoi/vtscadd"
   },
   "publishConfig": {
     "access": "public"

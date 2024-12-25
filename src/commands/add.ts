@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-12-23 14:56:49
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-12-25 10:19:02
+ * @LastEditTime: 2024-12-25 10:33:13
  * @Description:
  */
 import path from 'path'
@@ -159,7 +159,7 @@ export const add = new Command()
           options.components = components
           await copySelectedComponents(options)
         } else {
-          log.error('未选择任何组件！退出 vtsc 添加流程')
+          log.error('未选择任何组件！退出 vtscadd 添加流程')
           process.exit(1)
         }
       }
