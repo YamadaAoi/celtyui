@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2024-12-24 09:42:43
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-12-24 21:10:35
+ * @LastEditTime: 2024-12-25 11:49:08
  * @Description:
  */
-import path from 'path'
-import { fileURLToPath } from 'url'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'rollup'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'

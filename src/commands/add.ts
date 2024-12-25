@@ -1,12 +1,13 @@
+#!/usr/bin/env node
 /*
  * @Author: zhouyinkui
  * @Date: 2024-12-23 14:56:49
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-12-25 10:33:13
+ * @LastEditTime: 2024-12-25 11:48:44
  * @Description:
  */
-import path from 'path'
-import { fileURLToPath } from 'url'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { Command } from 'commander'
 import prompts from 'prompts'
 import { z } from 'zod'

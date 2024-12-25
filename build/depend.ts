@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2024-12-23 10:31:55
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-12-24 16:54:49
+ * @LastEditTime: 2024-12-25 11:48:59
  * @Description:
  */
-import path from 'path'
-import { fileURLToPath } from 'url'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { copy, mkdir, writeFile } from 'fs-extra'
 import madge from 'madge'
 import { ComponentInfo } from '../src/commands/util'
