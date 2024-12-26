@@ -1,6 +1,6 @@
 {
   "name": "vtscadd",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "vue3+ts+scss源码组件库",
   "bin": "./es/index.mjs",
   "types": "./es/types/src/index.d.ts",
@@ -8,7 +8,6 @@
     "es"
   ],
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "dev": "",
     "build": "pnpm depend && pnpm build-bin",
     "build-bin": "rollup --config build/rollup.config.ts --configPlugin typescript",

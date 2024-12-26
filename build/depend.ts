@@ -34,45 +34,91 @@ const sourceDir = path.resolve(__dirname, '../src/components')
  */
 const tsJson = path.resolve(__dirname, '../tsconfig.json')
 
-function getComponent(p: string, deps?: string[]) {
+function getDependencies(
+  deps: string[],
+  graph: madge.MadgeModuleDependencyGraph,
+  path: string
+) {
+  const dependencies: string[] = []
+  function getdepnds(p: string) {
+    if (!p.startsWith(path)) {
+      dependencies.push(p)
+    }
+    graph[p]?.forEach(d => {
+      getdepnds(d)
+    })
+  }
+  deps.forEach(d => {
+    getdepnds(d)
+  })
+  return dependencies
+}
+
+function getComponent(p: string, graph: madge.MadgeModuleDependencyGraph) {
   let component: ComponentInfo | undefined
-  if (p) {
-    const arr = p.split('/')
-    const fileName = arr[arr.length - 1]
-    if (fileName.includes('.')) {
-      const dependencies: string[] = []
-      deps?.forEach(dp => {
-        const c = getComponent(dp)
-        if (c) {
-          dependencies.push(c.name)
-        }
-      })
-      component = {
-        name: fileName.split('.')[0],
-        path: arr.slice(0, arr.length - 1).join('/'),
-        dependencies
-      }
+  const arr = p?.split('/')
+  // index.vue才是暴露出去的组件
+  if (arr?.length && arr.length > 2 && arr[arr.length - 1] === 'index.vue') {
+    const folder = arr[arr.length - 2]
+    // 以组件所处文件夹名为组件名
+    const name = folder[0].toUpperCase() + folder.substring(1)
+    const path = arr.slice(0, arr.length - 1).join('/')
+    component = {
+      name,
+      path,
+      dependencies: graph[p]?.length
+        ? getDependencies(graph[p], graph, path)
+        : []
     }
   }
   return component
 }
 
+function handleCompnentsInDependencies(arr: ComponentInfo[]) {
+  return arr.map(ar => {
+    let { dependencies } = ar
+    if (dependencies.length) {
+      // 获得依赖中所有组件的路径
+      const componentPaths = dependencies
+        .filter(d => d.endsWith('index.vue'))
+        .map(c => {
+          const arr = c.split('/')
+          return arr.slice(0, arr.length - 1).join('/')
+        })
+      if (componentPaths.length) {
+        const rest = dependencies.filter(d =>
+          componentPaths.every(c => !d.startsWith(c))
+        )
+        dependencies = [...componentPaths, ...rest]
+      }
+    }
+    return {
+      name: ar.name,
+      path: ar.path,
+      dependencies
+    }
+  })
+}
+
 async function main() {
   const res = await madge(sourceDir, {
-    fileExtensions: ['ts', 'tsx', 'js', 'jsx', 'vue'],
+    fileExtensions: ['ts', 'tsx', 'vue', 'scss'],
     tsConfig: tsJson
   })
-  const obj = res.obj()
-  console.log(obj)
+  const graph = res.obj()
+  console.log(graph)
   const arr: ComponentInfo[] = []
-  Object.keys(obj).forEach(key => {
-    const component = getComponent(key, obj[key])
+  Object.keys(graph).forEach(key => {
+    const component = getComponent(key, graph)
     if (component) {
       arr.push(component)
     }
   })
   await mkdir(esDir, { recursive: true })
-  await writeFile(compJson, JSON.stringify(arr, null, 2))
+  await writeFile(
+    compJson,
+    JSON.stringify(handleCompnentsInDependencies(arr), null, 2)
+  )
   await copy(sourceDir, compDir)
 }
 

@@ -23,7 +23,7 @@ export default [
       '**/es',
       '**/lib',
       '**/.eslintrc.js',
-      '**/vite.config.ts',
+      '**/vite.config.mts',
       '**/env.d.ts',
       '**/postcss.config.js',
       'public/**/*'
