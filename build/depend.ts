@@ -35,11 +35,16 @@ const sourceDir = path.resolve(__dirname, '../src/components')
 const tsJson = path.resolve(__dirname, '../tsconfig.json')
 
 function getDependencies(
-  deps: string[],
-  graph: madge.MadgeModuleDependencyGraph,
-  path: string
+  path: string,
+  graph: madge.MadgeModuleDependencyGraph
 ) {
-  const dependencies: string[] = []
+  const arr = path?.split('/')
+  // 组件所处文件夹路径
+  const folderPath = arr.slice(0, arr.length - 1).join('/')
+  // 默认把组件所处文件夹内所有内容均为该组件依赖
+  const dependencies = Object.keys(graph).filter(
+    p => p.startsWith(folderPath) && p !== path
+  )
   function getdepnds(p: string) {
     if (!p.startsWith(path)) {
       dependencies.push(p)
@@ -48,33 +53,30 @@ function getDependencies(
       getdepnds(d)
     })
   }
-  deps.forEach(d => {
+  graph[path]?.forEach(d => {
     getdepnds(d)
   })
   return dependencies
 }
 
-function getComponent(p: string, graph: madge.MadgeModuleDependencyGraph) {
+function getComponent(path: string, graph: madge.MadgeModuleDependencyGraph) {
   let component: ComponentInfo | undefined
-  const arr = p?.split('/')
+  const arr = path?.split('/')
   // index.vue才是暴露出去的组件
   if (arr?.length && arr.length > 2 && arr[arr.length - 1] === 'index.vue') {
     const folder = arr[arr.length - 2]
     // 以组件所处文件夹名为组件名
     const name = folder[0].toUpperCase() + folder.substring(1)
-    const path = arr.slice(0, arr.length - 1).join('/')
     component = {
       name,
       path,
-      dependencies: graph[p]?.length
-        ? getDependencies(graph[p], graph, path)
-        : []
+      dependencies: getDependencies(path, graph)
     }
   }
   return component
 }
 
-function handleCompnentsInDependencies(arr: ComponentInfo[]) {
+function handleCompnentsDependencies(arr: ComponentInfo[]) {
   return arr.map(ar => {
     let { dependencies } = ar
     if (dependencies.length) {
@@ -117,7 +119,7 @@ async function main() {
   await mkdir(esDir, { recursive: true })
   await writeFile(
     compJson,
-    JSON.stringify(handleCompnentsInDependencies(arr), null, 2)
+    JSON.stringify(handleCompnentsDependencies(arr), null, 2)
   )
   await copy(sourceDir, compDir)
 }
