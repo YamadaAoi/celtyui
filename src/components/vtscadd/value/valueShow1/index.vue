@@ -32,14 +32,13 @@ const props = defineProps<{
   align-items: center;
   justify-content: center;
   img {
-    width: 34px;
+    width: 32px;
     margin-right: 6px;
   }
   .wrap {
     .name {
       margin-bottom: 2px;
       font-size: 16px;
-      color: #ffffff;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -52,14 +51,12 @@ const props = defineProps<{
         font-weight: bold;
         font-size: 20px;
         line-height: 20px;
-        color: #00f9f9;
       }
       .unit {
         margin-left: 4px;
         font-weight: bold;
         font-size: 14px;
         line-height: 14px;
-        color: #7db7ef;
       }
     }
   }

@@ -4,7 +4,7 @@
       <img :src="props.data.icon" alt="" />
       <div class="num">
         <MAniNumber :value="props.data.value ?? 0" />
-        {{ props.data.unit }}
+        <span class="unit">{{ props.data.unit }}</span>
       </div>
     </div>
     <div class="label">{{ props.data.label }}</div>
@@ -35,17 +35,20 @@ const props = defineProps<{
     align-items: flex-end;
     justify-content: center;
     img {
-      width: 40px;
-      height: 40px;
+      width: 32px;
     }
     .num {
       font-size: 20px;
-      color: #ffee00;
+      .unit {
+        margin-left: 4px;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 14px;
+      }
     }
   }
   .label {
     font-size: 16px;
-    color: #ffffff;
   }
 }
 </style>
