@@ -33,7 +33,8 @@ export default defineConfig([
     plugins: [
       commonjs(),
       resolve({
-        extensions
+        extensions,
+        preferBuiltins: true
       }),
       json(),
       typescript({

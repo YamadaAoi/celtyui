@@ -8,16 +8,9 @@ export default defineComponent({
   setup() {
     const store = useMenuStore()
 
-    function onSelect(
-      value: string[],
-      option: Array<TreeOption | null>,
-      meta: {
-        node: TreeOption | null
-        action: 'select' | 'unselect'
-      }
-    ) {
-      if (meta.node?.key && meta.action === 'select') {
-        store.handleSelect(meta.node.key)
+    function onSelect(option: TreeOption, selected: boolean) {
+      if (!selected && !option.children?.length) {
+        store.handleSelect(option.key)
       }
     }
 
@@ -27,17 +20,17 @@ export default defineComponent({
       selected: boolean
     }) {
       return (
-        <div class="tree-label">
-          <div class="label-wrap" title={info.option.label}>
-            {info.option.label}
-          </div>
+        <div
+          class="tree-label"
+          title={info.option.label}
+          onClick={() => onSelect(info.option, info.selected)}>
+          {info.option.label}
         </div>
       )
     }
 
     return {
       store,
-      onSelect,
       renderLabel
     }
   },
@@ -47,13 +40,15 @@ export default defineComponent({
         <NTree
           class="menu-tree"
           data={this.store.menuTree}
+          selectedKeys={[this.store.selectMenu]}
           blockLine={true}
-          selectable={true}
+          blockNode={true}
+          selectable={false}
+          multiple={false}
           cancelable={false}
           expandOnClick={true}
           defaultExpandAll={true}
           renderLabel={this.renderLabel}
-          onUpdateSelectedKeys={this.onSelect}
         />
       </div>
     )

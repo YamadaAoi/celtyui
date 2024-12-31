@@ -1,10 +1,3 @@
-/*
- * @Author: zhouyinkui
- * @Date: 2022-02-23 18:12:06
- * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-12-27 16:57:17
- * @Description: vite配置
- */
 import path from 'path'
 import { defineConfig, loadEnv, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -73,6 +66,10 @@ export default defineConfig(({ command, mode }) => {
           vueTsc: true
         })
       )
+    } else {
+      config.build = {
+        outDir: './es/demo'
+      }
     }
   }
   return config

@@ -1,5 +1,11 @@
 # vtscadd
 
+## 1.0.5
+
+### Patch Changes
+
+- 添加demo功能
+
 ## 1.0.4
 
 ### Patch Changes

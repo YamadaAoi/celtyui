@@ -21,5 +21,5 @@
     }
   },
   "exclude": ["node_modules"],
-  "include": ["src", "vite.config.mts"]
+  "include": ["src", "build", "vite.config.mts"]
 }

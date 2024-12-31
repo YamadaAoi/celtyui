@@ -11,14 +11,39 @@ vue3 + ts + scss components
 咋整呢，没有服务器只能蹭 npm 了，于是就有了 vtscadd。<br/>
 归纳遇到的各种 UI，总有一天，我稍微改改，一个页面就搞定，~~就可以开心摸鱼了~~（不是）。<br/>
 
+### 注意
+
+vue组件统一以 index.vue 命名，实际组件名为组件所在包名，需要关闭项目中的eslint校验（'vue/multi-word-component-names': 'off'）。<br/>
+
 ### 先查看帮助
 
 ```bash
 $ npx vtscadd@latest -h
 ```
 
+### 初始化配置（可选）
+
+可以配置一些参数，目前有：
+
+```json
+{
+  "path": "src/components", // 组件存放路径
+  "port": "3000" // 本地demo服务启动端口
+}
+```
+
+```bash
+$ npx vtscadd@latest init
+```
+
 ### 添加组件
 
 ```bash
 $ npx vtscadd@latest add [components]
+```
+
+### 查看demo
+
+```bash
+$ npx vtscadd@latest demo
 ```

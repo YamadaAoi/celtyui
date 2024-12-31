@@ -2,6 +2,7 @@
 import { Command } from 'commander'
 import { init } from './commands/init'
 import { add } from './commands/add'
+import { demo } from './commands/demo'
 import packageJson from '../package.json'
 
 process.on('SIGINT', () => process.exit(0))
@@ -15,6 +16,7 @@ function main() {
 
   program.addCommand(init)
   program.addCommand(add)
+  program.addCommand(demo)
 
   program.parse()
 }

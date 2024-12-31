@@ -1,11 +1,10 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { getDemos, IDemo } from '../../vtscadd'
+import { getDemos, getPics, IDemo } from '../../vtscadd'
 
 interface IDemoInfo {
   name: string
   path: string
-  component: any
   img?: any
 }
 
@@ -16,27 +15,25 @@ export const useMenuStore = defineStore('menus', () => {
     let demos: IDemoInfo[] = []
     if (selectMenu.value) {
       const modules = getDemos()
+      const pics = getPics()
       const paths = Object.keys(modules).filter(d =>
         d.startsWith(`./${selectMenu.value}`)
       )
-      demos = Array.from(
-        new Set(
-          paths.map(p => {
-            const arr = p.split('/')
-            return arr.slice(0, arr.length - 1).join('/')
-          })
-        )
-      ).map(f => {
-        const arr = f.split('/')
-        const folder = arr[arr.length - 1]
-        const name = folder[0].toUpperCase() + folder.substring(1)
-        return {
-          name,
-          path: f,
-          component: modules[`${f}/index.vue`]?.default,
-          img: modules[`${f}/demo.png`]?.default
-        }
-      })
+      demos = paths
+        .map(p => {
+          const arr = p.split('/')
+          return arr.slice(0, arr.length - 1).join('/')
+        })
+        .map(f => {
+          const arr = f.split('/')
+          const folder = arr[arr.length - 1]
+          const name = folder[0].toUpperCase() + folder.substring(1)
+          return {
+            name,
+            path: f,
+            img: pics[`${f}/demo.png`]?.default
+          }
+        })
     }
     return demos
   })
@@ -77,6 +74,9 @@ export const useMenuStore = defineStore('menus', () => {
               }
               obj = temp
             }
+            if (i === arr.length - 1 && !selectMenu.value) {
+              selectMenu.value = p
+            }
           })
         }
       })
@@ -86,6 +86,7 @@ export const useMenuStore = defineStore('menus', () => {
   return {
     menuTree,
     curDemos,
+    selectMenu,
     handleSelect
   }
 })

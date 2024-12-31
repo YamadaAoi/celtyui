@@ -61,9 +61,9 @@ export default function useCharts(
     const chartEle: any = document.getElementById(chartId) as HTMLDivElement
     if (chartEle) {
       myChart = init(chartEle)
-    }
-    if (onclick) {
-      myChart?.on('click', onclick)
+      if (onclick) {
+        myChart.on('click', onclick)
+      }
     }
   }
 

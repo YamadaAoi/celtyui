@@ -7,7 +7,8 @@ import { log } from './util'
 
 const initOptionsSchema = z.object({
   cwd: z.string(),
-  path: z.string().optional()
+  path: z.string().optional(),
+  port: z.string().optional()
 })
 
 async function handleInit(opts: any) {
@@ -19,7 +20,8 @@ async function handleInit(opts: any) {
     path.resolve(options.cwd ?? '', 'vtscadd.json'),
     JSON.stringify(
       {
-        path: options.path
+        path: options.path,
+        port: options.port
       },
       null,
       2
@@ -38,6 +40,7 @@ export const init = new Command()
     '组件存放路径，默认 src/components',
     'src/components'
   )
+  .option('-t, --port <port>', 'demo页面监听端口，默认3210', '3210')
   .action(opts => {
     handleInit(opts).catch(err => {
       log.error('初始化异常 ', err)
