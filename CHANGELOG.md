@@ -1,5 +1,11 @@
 # vtscadd
 
+## 1.0.6
+
+### Patch Changes
+
+- demo页面优化，添加几个图表
+
 ## 1.0.5
 
 ### Patch Changes

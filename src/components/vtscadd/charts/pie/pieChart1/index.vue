@@ -10,7 +10,7 @@ import CommonChart from '../../commonChart/index.vue'
 const props = defineProps<{
   data: Array<{
     name: string
-    value: any
+    value: number
   }>
 }>()
 const option = computed<EChartsOption>(() => {
@@ -33,7 +33,7 @@ const option = computed<EChartsOption>(() => {
           return temp ? `{a|${name}} {b|${temp.value}}` : name
         },
         textStyle: {
-          color: '#000000',
+          color: '#FFFFFF',
           overflow: 'truncate',
           fontSize: 14,
           rich: {
@@ -99,7 +99,7 @@ const option = computed<EChartsOption>(() => {
             rich: {
               a: {
                 fontSize: 16,
-                color: '#000000'
+                color: '#FFFFFF'
               },
               b: {
                 fontSize: 28,

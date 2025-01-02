@@ -1,6 +1,6 @@
 {
   "name": "vtscadd",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "vue3+ts+scss源码组件库",
   "bin": "./es/index.mjs",
   "types": "./es/types/src/index.d.ts",
@@ -23,7 +23,7 @@
     "release": "pnpm build && pnpm release:only"
   },
   "keywords": [
-    "moyu",
+    "@mo-yu",
     "vue3",
     "ts",
     "scss",

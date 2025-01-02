@@ -25,19 +25,16 @@ onMounted(() => {
   const dir = route.query?.dir
   if (dir) {
     const key = `${dir}/index.vue`
-    const modules = getDemos()
-    const comp = modules[key]
-    if (comp) {
-      comp()
-        .then(c => {
-          demo.value = markRaw(c?.default)
-        })
-        .catch(err => {
-          console.error(err)
-        })
-    }
-    const source = getDemoSource()
-    source[key]?.()
+    getDemos()
+      [key]?.()
+      .then(c => {
+        demo.value = markRaw(c?.default)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+    getDemoSource()
+      [key]?.()
       .then(s => {
         code.value = hljs.highlightAuto(s).value
       })

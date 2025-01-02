@@ -29,9 +29,22 @@ export default defineComponent({
       )
     }
 
+    function renderPrefix(info: {
+      option: TreeOption
+      checked: boolean
+      selected: boolean
+    }) {
+      return info.option.children?.length ? (
+        <></>
+      ) : (
+        <i class="iconfont icon-zujianku"></i>
+      )
+    }
+
     return {
       store,
-      renderLabel
+      renderLabel,
+      renderPrefix
     }
   },
   render() {
@@ -49,6 +62,7 @@ export default defineComponent({
           expandOnClick={true}
           defaultExpandAll={true}
           renderLabel={this.renderLabel}
+          renderPrefix={this.renderPrefix}
         />
       </div>
     )

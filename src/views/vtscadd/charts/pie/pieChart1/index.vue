@@ -31,5 +31,6 @@ const data = [
 .pie-chart {
   width: 450px;
   height: 238px;
+  background-color: #062040;
 }
 </style>

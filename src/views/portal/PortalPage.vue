@@ -4,49 +4,46 @@
     <div class="body">
       <MenuPage />
       <div class="demos">
-        <div
-          v-for="demo in store.curDemos"
-          :key="demo.path"
-          class="demo-item"
-          @click="toDemo(demo.path)"
+        <NVirtualList
+          class="demo-list"
+          :items="demoList"
+          :item-size="pxNow(250)"
         >
-          <img :src="demo.img" alt="" />
-          <div class="label">
-            <i
-              class="iconfont icon-fuzhi"
-              @click.stop="handleCopy(demo.name)"
-            />
-            {{ demo.name }}
-          </div>
-        </div>
+          <template #default="{ item }">
+            <div class="demo-row">
+              <DemoItem
+                v-for="demo in item.row"
+                :key="demo.path"
+                :demo="demo"
+              />
+            </div>
+          </template>
+        </NVirtualList>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useMessage } from 'naive-ui'
+import { computed } from 'vue'
+import { NVirtualList } from 'naive-ui'
+import { useRem } from '@mo-yu/vue'
 import Header from './header/Header.vue'
 import MenuPage from './menu/MenuPage'
+import DemoItem from './demoItem/DemoItem.vue'
 import { useMenuStore } from './menu/useMenu'
 
 const store = useMenuStore()
-const message = useMessage()
-
-function handleCopy(name: string) {
-  navigator.clipboard
-    .writeText(name)
-    .then(() => {
-      message.success(`[${name}] 已复制到剪贴板！`)
+const { pxNow } = useRem()
+const demoList = computed(() => {
+  const list: any[] = []
+  for (let i = 0; i < store.curDemos.length; i += 5) {
+    list.push({
+      row: store.curDemos.slice(i, i + 5)
     })
-    .catch(err => {
-      console.error('无法复制文本：', err)
-    })
-}
-
-function toDemo(path: string) {
-  window.open(`${window.location.origin}/#/demo?dir=${path}`, '_blank')
-}
+  }
+  return list
+})
 </script>
 
 <style scoped lang="scss">
@@ -63,50 +60,15 @@ function toDemo(path: string) {
       width: calc(100% - 300px);
       height: 100%;
       padding: 16px 8px;
-      @include vars.scrollHiddenBase();
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-content: flex-start;
-      .demo-item {
-        width: calc(20% - 16px);
-        height: 250px;
-        cursor: help;
-        position: relative;
-        margin: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid #ccc;
-        overflow: hidden;
-        &:hover {
-          img {
-            transform: scale(1.1);
-          }
-        }
-        img {
-          transition: all 0.3s ease-in-out;
-          width: auto;
-          height: auto;
-          max-width: 100%;
-          max-height: 100%;
-        }
-        .label {
+      .demo-list {
+        width: 100%;
+        max-height: 100%;
+        .demo-row {
           width: 100%;
-          height: 32px;
-          text-align: center;
-          line-height: 32px;
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          z-index: 9;
-          color: white;
-          font-size: 14px;
-          background-color: rgba(0, 0, 0, 0.5);
-          @include vars.textOver();
-          i {
-            cursor: pointer;
-          }
+          height: 250px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
         }
       }
     }
