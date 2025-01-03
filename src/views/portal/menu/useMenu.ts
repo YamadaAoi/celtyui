@@ -10,6 +10,7 @@ export interface IDemoInfo {
 export const useMenuStore = defineStore('menus', () => {
   const selectMenu = ref('')
   const menuTree = ref<IDemo[]>(getDemoTree(getDemos()))
+  const filterText = ref('')
   const curDemos = computed(() => {
     let demos: IDemoInfo[] = []
     if (selectMenu.value) {
@@ -26,12 +27,22 @@ export const useMenuStore = defineStore('menus', () => {
             path
           }
         })
+        .filter(
+          p =>
+            !filterText.value ||
+            p.name.toUpperCase().includes(filterText.value.toUpperCase())
+        )
     }
     return demos
   })
 
   function handleSelect(menu: any) {
+    onFilterChange('')
     selectMenu.value = menu
+  }
+
+  function onFilterChange(val: string) {
+    filterText.value = val
   }
 
   function getDemoTree(modules: Record<string, any>) {
@@ -70,6 +81,8 @@ export const useMenuStore = defineStore('menus', () => {
     menuTree,
     curDemos,
     selectMenu,
-    handleSelect
+    filterText,
+    handleSelect,
+    onFilterChange
   }
 })

@@ -8,7 +8,7 @@
         class="iconfont icon-fuzhi"
         @click.stop="handleCopy(props.demo.name)"
       />
-      {{ props.demo.name }}
+      <MHighlight :text="props.demo.name" :word="store.filterText" />
     </div>
   </div>
 </template>
@@ -16,12 +16,15 @@
 <script setup lang="ts">
 import { onMounted, ref, markRaw, StyleValue, watchEffect } from 'vue'
 import { useMessage } from 'naive-ui'
+import { MHighlight } from '@mo-yu/vue'
 import { IDemoInfo } from '../menu/useMenu'
 import { getDemos } from '../../vtscadd'
+import { useMenuStore } from '../menu/useMenu'
 
 const props = defineProps<{
   demo: IDemoInfo
 }>()
+const store = useMenuStore()
 const message = useMessage()
 const comp = ref<any>(null)
 const style = ref<StyleValue>()

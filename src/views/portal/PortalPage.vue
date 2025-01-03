@@ -4,21 +4,37 @@
     <div class="body">
       <MenuPage />
       <div class="demos">
-        <NVirtualList
-          class="demo-list"
-          :items="demoList"
-          :item-size="pxNow(250)"
-        >
-          <template #default="{ item }">
-            <div class="demo-row">
-              <DemoItem
-                v-for="demo in item.row"
-                :key="demo.path"
-                :demo="demo"
-              />
-            </div>
-          </template>
-        </NVirtualList>
+        <div class="demo-filter">
+          <div class="filter">
+            <NInput
+              :value="store.filterText"
+              placeholder="搜索"
+              clearable
+              @update:value="store.onFilterChange"
+            >
+              <template #suffix>
+                <i class="iconfont icon-btn_search"></i>
+              </template>
+            </NInput>
+          </div>
+        </div>
+        <div class="demo-wrap">
+          <NVirtualList
+            class="demo-list"
+            :items="demoList"
+            :item-size="pxNow(250)"
+          >
+            <template #default="{ item }">
+              <div class="demo-row">
+                <DemoItem
+                  v-for="demo in item.row"
+                  :key="demo.path"
+                  :demo="demo"
+                />
+              </div>
+            </template>
+          </NVirtualList>
+        </div>
       </div>
     </div>
   </div>
@@ -26,7 +42,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { NVirtualList } from 'naive-ui'
+import { NVirtualList, NInput } from 'naive-ui'
 import { useRem } from '@mo-yu/vue'
 import Header from './header/Header.vue'
 import MenuPage from './menu/MenuPage'
@@ -59,16 +75,36 @@ const demoList = computed(() => {
     .demos {
       width: calc(100% - 300px);
       height: 100%;
-      padding: 16px 8px;
-      .demo-list {
+      .demo-filter {
         width: 100%;
-        max-height: 100%;
-        .demo-row {
+        height: 56px;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        border: 1px solid rgb(239, 239, 245);
+        .filter {
+          width: 300px;
+          .iconfont {
+            font-size: 16px;
+            color: #999;
+          }
+        }
+      }
+      .demo-wrap {
+        width: 100%;
+        width: calc(100% - 56px);
+        padding: 16px 8px;
+        .demo-list {
           width: 100%;
-          height: 250px;
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
+          max-height: 100%;
+          .demo-row {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+          }
         }
       }
     }
