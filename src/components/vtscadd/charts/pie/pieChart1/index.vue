@@ -6,16 +6,18 @@
 import { computed } from 'vue'
 import { EChartsOption } from 'echarts'
 import CommonChart from '../../commonChart/index.vue'
+import { getDefaultColors } from '../../commonChart/utils'
 
 const props = defineProps<{
   data: Array<{
     name: string
     value: number
   }>
+  colors?: string[]
 }>()
 const option = computed<EChartsOption>(() => {
   return {
-    color: ['#4394D8', '#4ECB73', '#FF8B4C', '#D1D1D1'],
+    color: props.colors ?? getDefaultColors(),
     tooltip: {
       show: true
     },
@@ -146,5 +148,3 @@ function dashPie() {
   return dataArr
 }
 </script>
-
-<style scoped lang="scss"></style>

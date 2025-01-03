@@ -5,16 +5,16 @@
 </template>
 
 <script setup lang="ts">
-import BarChart from 'src/components/vtscadd/charts/bar/barChart3/index.vue'
+import BarChart from 'src/components/vtscadd/charts/bar/barChart4/index.vue'
 
 const data: Array<{
   name: string
   value: [any, number][]
-}> = ['A', 'B'].map(d => {
+}> = ['A', 'B', 'C', 'D'].map(d => {
   return {
     name: d,
     value: new Array(7).fill('').map((s, i) => {
-      return [`${2018 + i}`, Math.floor(Math.random() * 1000)]
+      return [`${2018 + i}`, Math.floor(Math.random() * 200)]
     })
   }
 })
@@ -23,7 +23,7 @@ const data: Array<{
 <style scoped lang="scss">
 .bar-chart {
   width: 450px;
-  height: 260px;
+  height: 300px;
   background-color: #062040;
 }
 </style>

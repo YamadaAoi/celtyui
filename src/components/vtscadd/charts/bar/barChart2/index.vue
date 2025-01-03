@@ -78,7 +78,7 @@ const option = computed<EChartsOption>(() => {
           color: '#ffffff',
           fontSize: 14
         },
-        data: props.data.map(s => {
+        data: (props.data ?? []).map(s => {
           return s[0]
         })
       }
@@ -112,11 +112,9 @@ const option = computed<EChartsOption>(() => {
         backgroundStyle: {
           color: 'rgba(235,235,235,0.1)'
         },
-        data: props.data
+        data: props.data ?? []
       }
     ]
   }
 })
 </script>
-
-<style scoped lang="scss"></style>

@@ -6,13 +6,19 @@
 import { computed } from 'vue'
 import { EChartsOption } from 'echarts'
 import CommonChart from '../../commonChart/index.vue'
+import { getDefaultColors } from '../../commonChart/utils'
 
 const props = defineProps<{
-  data: [any, number][]
+  data: Array<{
+    name: string
+    value: [any, number][]
+  }>
   yName: string
+  colors?: string[]
 }>()
 const option = computed<EChartsOption>(() => {
   return {
+    color: props.colors ?? getDefaultColors(),
     grid: {
       top: '20%',
       bottom: '5%',
@@ -23,6 +29,16 @@ const option = computed<EChartsOption>(() => {
       trigger: 'axis',
       axisPointer: {
         type: 'shadow'
+      }
+    },
+    legend: {
+      top: '10%',
+      right: 20,
+      itemWidth: 8,
+      itemHeight: 8,
+      textStyle: {
+        color: 'rgba(230,247,255,0.7)',
+        fontSize: 12
       }
     },
     xAxis: {
@@ -46,7 +62,7 @@ const option = computed<EChartsOption>(() => {
       }
     },
     yAxis: {
-      name: props.yName,
+      name: '单位：个',
       nameTextStyle: {
         color: 'rgba(230,247,255,0.7)',
         align: 'right',
@@ -71,27 +87,15 @@ const option = computed<EChartsOption>(() => {
         }
       }
     },
-    series: [
-      {
-        type: 'pictorialBar',
-        itemStyle: {
-          color: '#1890FF'
-        },
-        emphasis: {
-          itemStyle: {
-            color: '#FF8B4C'
-          }
-        },
-        symbolRepeat: true,
-        symbolMargin: 3,
-        symbol: 'rect',
-        symbolClip: true,
-        symbolSize: [13, 8],
-        symbolPosition: 'start',
-        symbolOffset: [0, 0],
-        data: props.data ?? []
+    series: (props.data ?? []).map(c => {
+      return {
+        name: c.name,
+        stack: 'a',
+        type: 'bar',
+        barWidth: 16,
+        data: c.value
       }
-    ]
+    })
   }
 })
 </script>

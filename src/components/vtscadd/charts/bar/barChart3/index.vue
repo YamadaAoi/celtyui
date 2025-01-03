@@ -6,6 +6,7 @@
 import { computed } from 'vue'
 import { EChartsOption } from 'echarts'
 import CommonChart from '../../commonChart/index.vue'
+import { getDefaultColors } from '../../commonChart/utils'
 
 const props = defineProps<{
   data: Array<{
@@ -13,10 +14,11 @@ const props = defineProps<{
     value: [any, number][]
   }>
   yName: string
+  colors?: string[]
 }>()
 const option = computed<EChartsOption>(() => {
   return {
-    color: ['#1675E2', '#4ECB73'],
+    color: props.colors ?? getDefaultColors(),
     grid: {
       top: '30%',
       bottom: '5%',
@@ -85,7 +87,7 @@ const option = computed<EChartsOption>(() => {
         }
       }
     },
-    series: props.data.map(c => {
+    series: (props.data ?? []).map(c => {
       return {
         name: c.name,
         type: 'bar',
@@ -96,5 +98,3 @@ const option = computed<EChartsOption>(() => {
   }
 })
 </script>
-
-<style scoped lang="scss"></style>

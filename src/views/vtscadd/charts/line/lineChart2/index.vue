@@ -1,29 +1,29 @@
 <template>
-  <div class="bar-chart">
-    <BarChart :data="data" y-name="单位：个" />
+  <div class="line-chart">
+    <LineChart :data="data" y-name="单位/个" />
   </div>
 </template>
 
 <script setup lang="ts">
-import BarChart from 'src/components/vtscadd/charts/bar/barChart3/index.vue'
+import LineChart from 'src/components/vtscadd/charts/line/lineChart2/index.vue'
 
 const data: Array<{
   name: string
   value: [any, number][]
-}> = ['A', 'B'].map(d => {
+}> = ['A', 'B', 'C'].map(d => {
   return {
     name: d,
     value: new Array(7).fill('').map((s, i) => {
-      return [`${2018 + i}`, Math.floor(Math.random() * 1000)]
+      return [`${2018 + i}`, Math.floor(Math.random() * 100)]
     })
   }
 })
 </script>
 
 <style scoped lang="scss">
-.bar-chart {
+.line-chart {
   width: 450px;
-  height: 260px;
+  height: 380px;
   background-color: #062040;
 }
 </style>

@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'
-import 'dayjs/locale/zh-cn'
 import { remTool } from '@mo-yu/core'
 import './assets/app.scss'
 import './assets/iconfont/iconfont.css'

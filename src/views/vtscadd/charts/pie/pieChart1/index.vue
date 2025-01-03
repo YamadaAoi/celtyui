@@ -1,11 +1,11 @@
 <template>
   <div class="pie-chart">
-    <PieChart1 :data="data" />
+    <PieChart :data="data" />
   </div>
 </template>
 
 <script setup lang="ts">
-import PieChart1 from 'src/components/vtscadd/charts/pie/pieChart1/index.vue'
+import PieChart from 'src/components/vtscadd/charts/pie/pieChart1/index.vue'
 
 const data = [
   {

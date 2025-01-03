@@ -41,7 +41,7 @@ const option = computed<EChartsOption>(() => {
       axisLine: {
         show: true,
         lineStyle: {
-          color: '#BAE7FF'
+          color: 'rgba(255,255,255,0.1)'
         }
       }
     },
@@ -73,22 +73,31 @@ const option = computed<EChartsOption>(() => {
     },
     series: [
       {
-        type: 'pictorialBar',
+        type: 'line',
+        smooth: false,
+        symbolSize: 8,
         itemStyle: {
-          color: '#1890FF'
+          color: '#B28EFF'
         },
-        emphasis: {
-          itemStyle: {
-            color: '#FF8B4C'
+        areaStyle: {
+          color: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              {
+                offset: 0,
+                color: `#9D6FFF`
+              },
+              {
+                offset: 1,
+                color: `rgba(182,104,0,0)`
+              }
+            ]
           }
         },
-        symbolRepeat: true,
-        symbolMargin: 3,
-        symbol: 'rect',
-        symbolClip: true,
-        symbolSize: [13, 8],
-        symbolPosition: 'start',
-        symbolOffset: [0, 0],
         data: props.data ?? []
       }
     ]

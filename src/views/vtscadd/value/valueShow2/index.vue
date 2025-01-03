@@ -13,5 +13,3 @@ const data = {
   icon
 }
 </script>
-
-<style scoped lang="scss"></style>
