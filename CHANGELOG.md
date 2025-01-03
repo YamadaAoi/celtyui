@@ -1,5 +1,11 @@
 # vtscadd
 
+## 1.0.7
+
+### Patch Changes
+
+- 一些组件demo添加，demo过滤添加
+
 ## 1.0.6
 
 ### Patch Changes
