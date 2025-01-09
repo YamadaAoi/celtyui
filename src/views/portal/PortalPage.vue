@@ -82,7 +82,7 @@ const demoList = computed(() => {
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        border: 1px solid rgb(239, 239, 245);
+        border-bottom: 1px solid #dcdcdc;
         .filter {
           width: 300px;
           .iconfont {

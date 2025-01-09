@@ -1,13 +1,14 @@
 <template>
-  <div ref="demoItem" class="demo-item" @click="toDemo(props.demo.path)">
-    <div :style="style" class="demo-wrap">
-      <Component :is="comp" ref="demoRef" />
+  <div class="demo-item">
+    <div class="content" @click="toDemo(props.demo.path)">
+      <div ref="demoItem" class="demo-wrap">
+        <div :style="style" class="demo">
+          <Component :is="comp" ref="demoRef" />
+        </div>
+      </div>
     </div>
-    <div class="label">
-      <i
-        class="iconfont icon-fuzhi"
-        @click.stop="handleCopy(props.demo.name)"
-      />
+    <div class="label" @click="handleCopy(props.demo.name)">
+      <i class="iconfont icon-fuzhi" />
       <MHighlight :text="props.demo.name" :word="store.filterText" />
     </div>
   </div>
@@ -60,7 +61,7 @@ function handleCopy(name: string) {
   navigator.clipboard
     .writeText(name)
     .then(() => {
-      message.success(`[${name}] 已复制到剪贴板！`)
+      message.success(`“${name}” 已复制到剪贴板！`)
     })
     .catch(err => {
       console.error('无法复制文本：', err)
@@ -76,33 +77,43 @@ function toDemo(path: string) {
 .demo-item {
   width: calc(20% - 16px);
   height: 250px;
-  cursor: help;
   position: relative;
   margin: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 1px solid #dcdcdc;
+  box-shadow: 4px 8px 4px 2px rgba(34, 47, 69, 0.24);
+  border-radius: 4px;
   border: 1px solid #ccc;
   overflow: hidden;
-  .demo-wrap {
-    flex-shrink: 0;
-    pointer-events: none;
+  .content {
+    width: 100%;
+    height: calc(100% - 32px);
+    padding: 6px;
+    cursor: pointer;
+    .demo-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .demo {
+        flex-shrink: 0;
+        pointer-events: none;
+      }
+    }
   }
   .label {
     width: 100%;
     height: 32px;
+    cursor: copy;
     text-align: center;
     line-height: 32px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 9;
     color: white;
     font-size: 14px;
-    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 4px 4px;
+    background-color: rgba(0, 0, 0, 0.7);
     @include vars.textOver();
     i {
-      cursor: pointer;
+      margin-right: 4px;
     }
   }
 }

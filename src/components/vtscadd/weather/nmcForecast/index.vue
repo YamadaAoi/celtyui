@@ -108,7 +108,7 @@ async function getWeather() {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(90deg, #009aff 0%, #183d55 100%);
+    background: linear-gradient(180deg, #009aff 0%, #183d55 100%);
     .left-wrap {
       display: flex;
       flex-direction: column;

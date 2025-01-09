@@ -28,7 +28,7 @@ import moyu from 'src/assets/images/mo-yu.jpg'
 .header {
   width: 100%;
   height: 64px;
-  border-bottom: 1px solid rgb(239, 239, 245);
+  border-bottom: 1px solid #dcdcdc;
   display: flex;
   align-items: center;
   justify-content: space-between;

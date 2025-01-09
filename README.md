@@ -13,12 +13,16 @@ vue3 + ts + scss components
 
 ### 注意
 
-vue组件统一以 index.vue 命名，实际组件名为组件所在包名，需要关闭项目中的eslint校验（'vue/multi-word-component-names': 'off'）。<br/>
+- vue组件统一以 index.vue 命名，实际组件名为组件所在包名，需要关闭项目中的eslint校验（'vue/multi-word-component-names': 'off'）。
+- 组件内只提供基础样式，如无必要，不会引入（背景）图片
 
 ### 先查看帮助
 
 ```bash
 $ npx vtscadd@latest -h
+$ npx vtscadd@latest init -h
+$ npx vtscadd@latest add -h
+$ npx vtscadd@latest demo -h
 ```
 
 ### 初始化配置（可选）

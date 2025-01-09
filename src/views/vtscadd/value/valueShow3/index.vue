@@ -32,7 +32,7 @@ const data2 = {
     {
       label: '面积',
       value: 26231,
-      unit: '个'
+      unit: '亩'
     }
   ]
 }
