@@ -1,6 +1,6 @@
 {
   "name": "vtscadd",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "vue3+ts+scss源码组件库",
   "bin": "./es/index.mjs",
   "types": "./es/types/src/index.d.ts",

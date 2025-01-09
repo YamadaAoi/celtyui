@@ -1,0 +1,64 @@
+<template>
+  <div class="rotatable-seat">
+    <div class="foot1">
+      <div class="ring"></div>
+    </div>
+    <div class="foot1 foot2">
+      <div class="ring"></div>
+    </div>
+    <div class="foot1 foot3">
+      <div class="ring"></div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts"></script>
+
+<style scoped lang="scss">
+.rotatable-seat {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  @keyframes imgRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .foot1 {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateX(60deg);
+    .ring {
+      width: 100%;
+      height: 100%;
+      //   border-radius: 50%;
+      border-width: 1px;
+      border-style: solid;
+      border-color: red;
+      animation: imgRotate 5s infinite linear;
+    }
+  }
+  .foot2 {
+    width: 100px;
+    height: 100px;
+    .ring {
+      border-color: green;
+      animation: imgRotate 3s infinite reverse linear;
+    }
+  }
+  .foot3 {
+    width: 50px;
+    height: 50px;
+    .ring {
+      border-color: blue;
+      animation: imgRotate 1s infinite linear;
+    }
+  }
+}
+</style>

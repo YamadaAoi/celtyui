@@ -80,15 +80,15 @@ function toDemo(path: string) {
   position: relative;
   margin: 8px;
   border: 1px solid #dcdcdc;
-  box-shadow: 4px 8px 4px 2px rgba(34, 47, 69, 0.24);
+  box-shadow: 4px 4px 4px 2px rgba(34, 47, 69, 0.24);
   border-radius: 4px;
   border: 1px solid #ccc;
-  overflow: hidden;
   .content {
     width: 100%;
     height: calc(100% - 32px);
     padding: 6px;
     cursor: pointer;
+    overflow: hidden;
     .demo-wrap {
       width: 100%;
       height: 100%;

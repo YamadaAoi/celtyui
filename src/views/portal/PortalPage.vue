@@ -22,7 +22,7 @@
           <NVirtualList
             class="demo-list"
             :items="demoList"
-            :item-size="pxNow(250)"
+            :item-size="pxNow(268)"
           >
             <template #default="{ item }">
               <div class="demo-row">
@@ -100,7 +100,7 @@ const demoList = computed(() => {
           max-height: 100%;
           .demo-row {
             width: 100%;
-            height: 250px;
+            height: 266px;
             display: flex;
             align-items: center;
             justify-content: flex-start;
