@@ -46,7 +46,7 @@ function getDependencies(
     p => p.startsWith(folderPath) && p !== path
   )
   function getdepnds(p: string) {
-    if (!p.startsWith(path)) {
+    if (!p.startsWith(folderPath)) {
       dependencies.push(p)
     }
     graph[p]?.forEach(d => {
@@ -105,6 +105,7 @@ function handleCompnentsDependencies(arr: ComponentInfo[]) {
 async function main() {
   const res = await madge(sourceDir, {
     fileExtensions: ['ts', 'tsx', 'vue', 'scss'],
+    excludeRegExp: [/demo/],
     tsConfig: tsJson
   })
   const graph = res.obj()
