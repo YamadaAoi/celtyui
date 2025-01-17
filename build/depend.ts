@@ -109,7 +109,7 @@ async function main() {
     tsConfig: tsJson
   })
   const graph = res.obj()
-  console.log(graph)
+  console.log(JSON.stringify(graph))
   const arr: ComponentInfo[] = []
   Object.keys(graph).forEach(key => {
     const component = getComponent(key, graph)
@@ -122,7 +122,9 @@ async function main() {
     compJson,
     JSON.stringify(handleCompnentsDependencies(arr), null, 2)
   )
-  await copy(sourceDir, compDir)
+  await copy(sourceDir, compDir, {
+    filter: (src: string) => !src.includes('demo')
+  })
 }
 
 main().catch(e => {
