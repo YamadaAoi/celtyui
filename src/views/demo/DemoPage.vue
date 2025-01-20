@@ -14,7 +14,7 @@ import type { Component } from 'vue'
 import { useRoute } from 'vue-router'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github-dark.css'
-import { getDemos, getDemoSource } from '../vtscadd'
+import { getDemos, getDemoSource } from 'src/components/vtscadd/demoAble'
 
 const route = useRoute()
 const demo = ref<Component | null>(null)
@@ -24,7 +24,7 @@ const code = ref('')
 onMounted(() => {
   const dir = route.query?.dir
   if (dir) {
-    const key = `${dir}/index.vue`
+    const key = `${dir}/demo/index.vue`
     getDemos()
       [key]?.()
       .then(c => {

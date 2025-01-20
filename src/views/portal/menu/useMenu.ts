@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { getDemos, IDemo } from '../../vtscadd'
+import { getDemos, IDemo } from 'src/components/vtscadd/demoAble'
 
 export interface IDemoInfo {
   name: string
@@ -18,7 +18,7 @@ export const useMenuStore = defineStore('menus', () => {
         .filter(d => d.startsWith(`./${selectMenu.value}`))
         .map(p => {
           const arr = p.split('/')
-          const pathArr = arr.slice(0, arr.length - 1)
+          const pathArr = arr.slice(0, arr.length - 2)
           const folder = pathArr[pathArr.length - 1]
           const name = folder[0].toUpperCase() + folder.substring(1)
           const path = pathArr.join('/')
@@ -47,33 +47,33 @@ export const useMenuStore = defineStore('menus', () => {
 
   function getDemoTree(modules: Record<string, any>) {
     const demoTree: IDemo[] = []
-    Object.keys(modules)
-      .filter(p => p.endsWith('index.vue'))
-      .forEach(path => {
-        const paths = path.split('/').slice(1, -2)
-        if (paths.length) {
-          let obj: IDemo | undefined
-          paths.forEach((dir, i, arr) => {
-            const p = arr.slice(0, i + 1).join('/')
-            if (obj && !obj.children) {
-              obj.children = []
+    Object.keys(modules).forEach(path => {
+      // 截取到组件所处文件夹上一层
+      // 例如'./charts/bar/barChart1/demo/index.vue'截取到['charts', 'bar']
+      const paths = path.split('/').slice(1, -3)
+      if (paths.length) {
+        let obj: IDemo | undefined
+        paths.forEach((dir, i, arr) => {
+          const p = arr.slice(0, i + 1).join('/')
+          if (obj && !obj.children) {
+            obj.children = []
+          }
+          const children = obj?.children ?? demoTree
+          let temp = children.find(d => d.key === p)
+          if (!temp) {
+            temp = {
+              label: dir,
+              key: p
             }
-            const children = obj?.children ?? demoTree
-            let temp = children.find(d => d.key === p)
-            if (!temp) {
-              temp = {
-                label: dir,
-                key: p
-              }
-              children.push(temp)
-            }
-            obj = temp
-            if (i === arr.length - 1 && !selectMenu.value) {
-              selectMenu.value = p
-            }
-          })
-        }
-      })
+            children.push(temp)
+          }
+          obj = temp
+          if (i === arr.length - 1 && !selectMenu.value) {
+            selectMenu.value = p
+          }
+        })
+      }
+    })
     return demoTree
   }
 

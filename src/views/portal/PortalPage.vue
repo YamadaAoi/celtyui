@@ -10,6 +10,7 @@
               :value="store.filterText"
               placeholder="搜索"
               clearable
+              size="small"
               @update:value="store.onFilterChange"
             >
               <template #suffix>

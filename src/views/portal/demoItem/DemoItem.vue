@@ -18,9 +18,8 @@
 import { onMounted, ref, markRaw, StyleValue, watchEffect } from 'vue'
 import { useMessage } from 'naive-ui'
 import { MHighlight } from '@mo-yu/vue'
-import { IDemoInfo } from '../menu/useMenu'
-import { getDemos } from '../../vtscadd'
-import { useMenuStore } from '../menu/useMenu'
+import { IDemoInfo, useMenuStore } from '../menu/useMenu'
+import { getDemos } from 'src/components/vtscadd/demoAble'
 
 const props = defineProps<{
   demo: IDemoInfo
@@ -33,7 +32,7 @@ const demoItem = ref<any>(null)
 const demoRef = ref<any>(null)
 
 onMounted(() => {
-  const key = `${props.demo.path}/index.vue`
+  const key = `${props.demo.path}/demo/index.vue`
   getDemos()
     [key]?.()
     .then(c => {
