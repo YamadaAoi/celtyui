@@ -19,7 +19,7 @@ import { onMounted, ref, markRaw, StyleValue, watchEffect } from 'vue'
 import { useMessage } from 'naive-ui'
 import { MHighlight } from '@mo-yu/vue'
 import { IDemoInfo, useMenuStore } from '../menu/useMenu'
-import { getDemos } from 'src/components/vtscadd/demoAble'
+import { getDemos } from 'src/components/celtyui/demoAble'
 
 const props = defineProps<{
   demo: IDemoInfo

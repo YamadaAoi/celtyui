@@ -22,7 +22,7 @@ async function handleDemo(opts: any) {
     ...opts,
     cwd: path.resolve(opts.cwd)
   })
-  const configPath = path.resolve(options.cwd, 'vtscadd.json')
+  const configPath = path.resolve(options.cwd, 'celtyui.json')
   const exists = await pathExists(configPath)
   if (exists) {
     // 读取配置文件
@@ -40,7 +40,7 @@ async function handleDemo(opts: any) {
 
 export const demo = new Command()
   .name('demo')
-  .description('启动本地服务器打开 [vtscadd] 内置 demo 页面')
+  .description('启动本地服务器打开 [celtyui] 内置 demo 页面')
   .option('-c, --cwd <cwd>', '工作目录，默认当前位置', process.cwd())
   .option('-p, --port <port>', 'demo页面监听端口，默认3210')
   .action(opts => {

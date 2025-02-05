@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { getDemos, IDemo } from 'src/components/vtscadd/demoAble'
+import { getDemos, IDemo } from 'src/components/celtyui/demoAble'
 
 export interface IDemoInfo {
   name: string

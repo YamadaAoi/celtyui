@@ -14,7 +14,7 @@ import type { Component } from 'vue'
 import { useRoute } from 'vue-router'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github-dark.css'
-import { getDemos, getDemoSource } from 'src/components/vtscadd/demoAble'
+import { getDemos, getDemoSource } from 'src/components/celtyui/demoAble'
 
 const route = useRoute()
 const demo = ref<Component | null>(null)

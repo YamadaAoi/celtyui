@@ -85,7 +85,7 @@ async function handleAdd(components: any, opts: any) {
     ...opts,
     cwd: path.resolve(opts.cwd)
   })
-  const configPath = path.resolve(options.cwd, 'vtscadd.json')
+  const configPath = path.resolve(options.cwd, 'celtyui.json')
   const exists = await pathExists(configPath)
   if (exists) {
     // 读取配置文件
@@ -118,7 +118,7 @@ async function handleAdd(components: any, opts: any) {
         options.components = components
         await copySelectedComponents(options)
       } else {
-        log.error('未选择任何组件！退出 vtscadd 添加流程')
+        log.error('未选择任何组件！退出 celtyui 添加流程')
         process.exit(1)
       }
     }

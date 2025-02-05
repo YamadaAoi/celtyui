@@ -17,7 +17,7 @@ async function handleInit(opts: any) {
     cwd: path.resolve(opts.cwd)
   })
   await writeFile(
-    path.resolve(options.cwd ?? '', 'vtscadd.json'),
+    path.resolve(options.cwd ?? '', 'celtyui.json'),
     JSON.stringify(
       {
         path: options.path,
@@ -27,13 +27,13 @@ async function handleInit(opts: any) {
       2
     )
   )
-  log.success('初始化配置文件 [vtscadd.json] 成功')
-  log.info('建议将 vtscadd.json 配置到 .gitignore 中')
+  log.success('初始化配置文件 [celtyui.json] 成功')
+  log.info('建议将 celtyui.json 配置到 .gitignore 中')
 }
 
 export const init = new Command()
   .name('init')
-  .description('初始化配置文件 [vtscadd.json] 到您项目的根目录中')
+  .description('初始化配置文件 [celtyui.json] 到您项目的根目录中')
   .option('-c, --cwd <cwd>', '工作目录，默认当前位置', process.cwd())
   .option(
     '-p, --path <path>',

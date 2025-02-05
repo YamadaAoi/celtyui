@@ -2,17 +2,17 @@
   <div class="header">
     <div class="header-wrap">
       <NImage class="mo-yu-icon" :src="moyu" />
-      <div class="title">vtscadd</div>
+      <div class="title">celtyui</div>
     </div>
     <div class="header-wrap">
       <a
         class="iconfont icon-github"
-        href="https://github.com/YamadaAoi/vtscadd"
+        href="https://github.com/YamadaAoi/celtyui"
         target="_blank"
       />
       <a
         class="iconfont icon-npm"
-        href="https://www.npmjs.com/package/vtscadd"
+        href="https://www.npmjs.com/package/celtyui"
         target="_blank"
       />
     </div>

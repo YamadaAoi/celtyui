@@ -1,7 +1,7 @@
 {
-  "name": "vtscadd",
-  "version": "1.0.8",
-  "description": "vue3+ts+scss源码组件库",
+  "name": "celtyui",
+  "version": "1.0.1",
+  "description": "headless源码组件库",
   "bin": "./es/index.mjs",
   "types": "./es/types/src/index.d.ts",
   "files": [
@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "pnpm depend && pnpm build-bin && pnpm build-demo",
+    "build": "run-p build-es build-demo",
+    "build-es": "run-s depend build-bin",
     "build-demo": "vite build",
     "build-bin": "rollup --config build/rollup.config.ts --configPlugin typescript",
     "depend": "pnpm clean && esno build/depend.ts",
@@ -19,10 +20,11 @@
     "lint-build": "eslint --cache build/**/*.{ts,tsx,vue}",
     "csadd": "changeset",
     "csver": "pnpm changeset version",
-    "release:only": "changeset publish --registry=https://registry.npmjs.com/",
-    "release": "pnpm build && pnpm release:only"
+    "release-only": "changeset publish --registry=https://registry.npmjs.com/",
+    "release": "run-s build release-only"
   },
   "keywords": [
+    "headless",
     "@mo-yu",
     "vue3",
     "ts",
@@ -37,7 +39,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YamadaAoi/vtscadd"
+    "url": "https://github.com/YamadaAoi/celtyui"
   },
   "publishConfig": {
     "access": "public"
@@ -81,6 +83,7 @@
     "lint-staged": "^15.2.11",
     "madge": "^8.0.0",
     "naive-ui": "^2.40.4",
+    "npm-run-all": "^4.1.5",
     "open": "^10.1.0",
     "pinia": "^2.3.0",
     "postcss": "^8.4.49",

@@ -57,7 +57,7 @@ export default [
         ecmaFeatures: {
           jsx: true
         },
-        tsconfigRootDir: 'D:\\codes\\github\\vtscadd',
+        tsconfigRootDir: 'D:\\codes\\github\\celtyui',
         project: ['./tsconfig.json'],
         extraFileExtensions: ['.vue']
       }
