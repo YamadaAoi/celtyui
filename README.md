@@ -1,6 +1,6 @@
 # celtyui
 
-vue3 + ts + scss components
+celtyui是一个headless UI 库，名字出自《无头骑士异闻录》角色“塞尔提·史特路尔森(Celty Sturluson)”，用于归纳项目中的可复用部分。
 
 ## celtyui
 

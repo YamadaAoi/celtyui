@@ -1,10 +1,3 @@
-/*
- * @Author: zhouyinkui
- * @Date: 2024-12-24 09:42:43
- * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-12-25 11:49:08
- * @Description:
- */
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'rollup'
@@ -25,9 +18,6 @@ export default defineConfig([
       dir: 'es',
       format: 'es',
       entryFileNames: '[name].mjs',
-      exports: 'named',
-      preserveModules: true,
-      preserveModulesRoot: 'src',
       sourcemap: false
     },
     plugins: [
@@ -40,11 +30,24 @@ export default defineConfig([
       typescript({
         compilerOptions: {
           outDir: 'es',
+          target: 'esnext',
+          module: 'esnext',
+          skipLibCheck: true,
+          strict: true,
+          esModuleInterop: true,
+          moduleResolution: 'node',
+          allowSyntheticDefaultImports: true,
+          forceConsistentCasingInFileNames: true,
+          useDefineForClassFields: true,
           declaration: true,
           emitDeclarationOnly: true,
           declarationDir: 'es/types',
-          sourceMap: false
+          sourceMap: false,
+          resolveJsonModule: true,
+          types: ['node'],
+          lib: ['esnext', 'dom']
         },
+        exclude: ['node_modules'],
         include: ['src/index.ts']
       }),
       esbuild({

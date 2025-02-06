@@ -1,15 +1,8 @@
-/*
- * @Author: zhouyinkui
- * @Date: 2024-12-23 10:31:55
- * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-12-25 11:48:59
- * @Description:
- */
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { copy, mkdir, writeFile } from 'fs-extra'
 import madge from 'madge'
-import { ComponentInfo } from '../src/commands/util'
+import { ComponentInfo } from '../../../src/commands/util'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)

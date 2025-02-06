@@ -1,9 +1,10 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import vue from 'eslint-plugin-vue'
 import typescriptEslint from '@typescript-eslint/eslint-plugin'
 import prettier from 'eslint-plugin-prettier'
 import globals from 'globals'
-import parser from '@typescript-eslint/parser'
+import parser from 'vue-eslint-parser'
 import js from '@eslint/js'
 import { FlatCompat } from '@eslint/eslintrc'
 
@@ -31,22 +32,34 @@ export default [
   ...compat.extends(
     'eslint:recommended',
     'plugin:promise/recommended',
+    'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended'
   ),
   {
     plugins: {
+      vue,
       '@typescript-eslint': typescriptEslint,
       prettier
     },
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node
+        ...globals.node,
+        ...vue.configs.recommended.globals
       },
       parser: parser,
       ecmaVersion: 2020,
-      sourceType: 'module'
+      sourceType: 'module',
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+        ecmaFeatures: {
+          jsx: true
+        },
+        tsconfigRootDir: '.',
+        project: ['./tsconfig.json'],
+        extraFileExtensions: ['.vue']
+      }
     },
     rules: {
       'prettier/prettier': 'error',
@@ -67,7 +80,9 @@ export default [
       'no-global-assign': 'off',
       'no-multi-str': 'off',
       'class-methods-use-this': 'off',
-      'no-console': 'off'
+      'no-console': 'off',
+      'vue/no-v-html': 'off',
+      'vue/multi-word-component-names': 'off'
     }
   }
 ]

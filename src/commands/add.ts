@@ -9,16 +9,17 @@ import { ComponentInfo, log } from './util'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const compDir = path.resolve(__dirname, '../components')
-const compJson = path.resolve(__dirname, '../components.json')
 const addOptionsSchema = z.object({
   components: z.array(z.string()).optional(),
   overwrite: z.boolean(),
   cwd: z.string(),
   all: z.boolean(),
-  path: z.string().optional()
+  path: z.string().optional(),
+  lang: z.string().optional()
 })
 let config: any
+let compDir: string
+let compJson: string
 
 async function handleCopy(file: string, dest: string) {
   const source = path.resolve(compDir, file)
@@ -92,6 +93,9 @@ async function handleAdd(components: any, opts: any) {
     config = await readJson(configPath)
     log.success(`读取配置文件 [${configPath}] 成功`)
   }
+  const lang = options.lang ?? config?.lang ?? 'vue'
+  compDir = path.resolve(__dirname, lang, 'components')
+  compJson = path.resolve(__dirname, lang, 'components.json')
   if (options.components?.length) {
     // 复制选中的组件
     await copySelectedComponents(options)
@@ -127,12 +131,13 @@ async function handleAdd(components: any, opts: any) {
 
 export const add = new Command()
   .name('add')
-  .description('添加组件源码（vue3 + ts + scss）到您的项目中')
+  .description('添加组件源码（vue3 or react）到您的项目中')
   .argument('[components...]', '需要添加的组件')
   .option('-c, --cwd <cwd>', '工作目录，默认当前位置', process.cwd())
   .option('-o, --overwrite', '覆盖已有的同名组件文件', false)
   .option('-a, --all', '添加库内所有组件到您的项目中', false)
   .option('-p, --path <path>', '组件存放路径，默认 src/components')
+  .option('-l, --lang <lang>', '框架类型（vue or react），默认vue')
   .action((components, opts) => {
     handleAdd(components, opts).catch(err => {
       log.error('程序异常 ', err)
