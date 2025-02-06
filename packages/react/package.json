@@ -1,0 +1,30 @@
+{
+  "name": "celtyui-react",
+  "version": "1.0.0",
+  "description": "headless react源码组件库",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "run-p depend build-demo",
+    "build-demo": "vite build",
+    "depend": "pnpm clean && esno build/depend.ts",
+    "clean": "rimraf es"
+  },
+  "keywords": [
+    "headless",
+    "celtyui",
+    "react"
+  ],
+  "author": "zhouyinkui",
+  "license": "ISC",
+  "devDependencies": {
+    "@mo-yu/core": "^1.0.16",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

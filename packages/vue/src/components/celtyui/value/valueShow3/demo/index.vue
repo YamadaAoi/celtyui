@@ -7,10 +7,9 @@
 
 <script setup lang="ts">
 import ValueShow from 'src/components/celtyui/value/valueShow3/index.vue'
-import icon from 'src/assets/images/vue.svg'
 
 const data1 = {
-  icon,
+  icon: '/favicon.svg',
   bg: 'linear-gradient( 90deg, rgba(40,109,247,0.35) 0%, rgba(40,109,247,0) 100%)',
   data: [
     {
@@ -26,7 +25,7 @@ const data1 = {
   ]
 }
 const data2 = {
-  icon,
+  icon: '/favicon.svg',
   bg: 'linear-gradient( 90deg, rgba(82,255,226,0.35) 0%, rgba(82,255,226,0) 100%)',
   data: [
     {

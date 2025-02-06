@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { NImage } from 'naive-ui'
-import moyu from 'src/assets/images/mo-yu.jpg'
+import moyu from 'root/assets/images/mo-yu.jpg'
 </script>
 
 <style scoped lang="scss">

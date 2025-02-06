@@ -2,8 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'
 import { remTool } from '@mo-yu/core'
-import './assets/app.scss'
-import './assets/iconfont/iconfont.css'
+import 'root/assets/app.scss'
+import 'root/assets/iconfont/iconfont.css'
 import router from './router'
 
 remTool.resetDesignSize({

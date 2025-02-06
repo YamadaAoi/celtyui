@@ -1,7 +1,6 @@
 import path from 'path'
 import { defineConfig, loadEnv, UserConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import react from '@vitejs/plugin-react'
 import pxtorem from 'postcss-pxtorem'
 import postcssPresetEnv from 'postcss-preset-env'
 import checker from 'vite-plugin-checker'
@@ -25,7 +24,7 @@ function getBrowsers(command: 'build' | 'serve') {
 export default defineConfig(({ command, mode }) => {
   loadEnv(mode, process.cwd())
   const config: UserConfig = {
-    plugins: [vue(), vueJsx()],
+    plugins: [react()],
     resolve: {
       alias: {
         src: path.resolve(__dirname, './src'),
