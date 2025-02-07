@@ -19,7 +19,7 @@
     "build-react": "pnpm --filter \"celtyui-react\" build",
     "lint": "pnpm lint-src && pnpm lint-packages",
     "lint-src": "eslint --cache src/**/*.ts",
-    "lint-packages": "eslint --cache packages/**/*.{ts,tsx,vue}",
+    "lint-packages": "pnpm -r --filter \"celtyui-react\" lint",
     "csadd": "changeset",
     "csver": "pnpm changeset version",
     "release-only": "changeset publish --registry=https://registry.npmjs.com/",

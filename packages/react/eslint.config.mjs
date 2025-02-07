@@ -1,12 +1,13 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import vue from 'eslint-plugin-vue'
-import typescriptEslint from '@typescript-eslint/eslint-plugin'
-import prettier from 'eslint-plugin-prettier'
 import globals from 'globals'
-import parser from 'vue-eslint-parser'
 import js from '@eslint/js'
 import { FlatCompat } from '@eslint/eslintrc'
+import typescriptEslint from '@typescript-eslint/eslint-plugin'
+import prettier from 'eslint-plugin-prettier'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import parser from '@typescript-eslint/parser'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -32,34 +33,24 @@ export default [
   ...compat.extends(
     'eslint:recommended',
     'plugin:promise/recommended',
-    'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended'
   ),
   {
     plugins: {
-      vue,
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
       '@typescript-eslint': typescriptEslint,
       prettier
     },
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node,
-        ...vue.configs.recommended.globals
+        ...globals.node
       },
-      parser: parser,
+      parser,
       ecmaVersion: 2020,
-      sourceType: 'module',
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-        ecmaFeatures: {
-          jsx: true
-        },
-        tsconfigRootDir: '.',
-        project: ['./tsconfig.json'],
-        extraFileExtensions: ['.vue']
-      }
+      sourceType: 'module'
     },
     rules: {
       'prettier/prettier': 'error',

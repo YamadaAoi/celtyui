@@ -8,10 +8,11 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "useDefineForClassFields": true,
     "sourceMap": false,
     "types": ["node"],
-    "lib": ["esnext", "dom"]
+    "lib": ["DOM", "DOM.Iterable", "esnext"]
   },
   "exclude": ["node_modules"],
   "include": ["src"]

@@ -1,15 +1,12 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { getDemos, IDemo } from 'src/components/celtyui/demoAble'
-
-export interface IDemoInfo {
-  name: string
-  path: string
-}
+import { getDemos } from 'src/components/celtyui/demoAble'
+import { IDemo, IDemoInfo, getDemoTree } from 'root/utils/demos'
 
 export const useMenuStore = defineStore('menus', () => {
-  const selectMenu = ref('')
-  const menuTree = ref<IDemo[]>(getDemoTree(getDemos()))
+  const [tree, defaultMenu] = getDemoTree(getDemos())
+  const selectMenu = ref(defaultMenu)
+  const menuTree = ref<IDemo[]>(tree)
   const filterText = ref('')
   const curDemos = computed(() => {
     let demos: IDemoInfo[] = []
@@ -43,38 +40,6 @@ export const useMenuStore = defineStore('menus', () => {
 
   function onFilterChange(val: string) {
     filterText.value = val
-  }
-
-  function getDemoTree(modules: Record<string, any>) {
-    const demoTree: IDemo[] = []
-    Object.keys(modules).forEach(path => {
-      // 截取到组件所处文件夹上一层
-      // 例如'./charts/bar/barChart1/demo/index.vue'截取到['charts', 'bar']
-      const paths = path.split('/').slice(1, -3)
-      if (paths.length) {
-        let obj: IDemo | undefined
-        paths.forEach((dir, i, arr) => {
-          const p = arr.slice(0, i + 1).join('/')
-          if (obj && !obj.children) {
-            obj.children = []
-          }
-          const children = obj?.children ?? demoTree
-          let temp = children.find(d => d.key === p)
-          if (!temp) {
-            temp = {
-              label: dir,
-              key: p
-            }
-            children.push(temp)
-          }
-          obj = temp
-          if (i === arr.length - 1 && !selectMenu.value) {
-            selectMenu.value = p
-          }
-        })
-      }
-    })
-    return demoTree
   }
 
   return {

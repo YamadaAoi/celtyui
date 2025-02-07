@@ -8,7 +8,8 @@
     "build": "run-p depend build-demo",
     "build-demo": "vite build",
     "depend": "pnpm clean && esno build/depend.ts",
-    "clean": "rimraf es"
+    "clean": "rimraf es",
+    "lint": "eslint --cache src/**/*.{ts,tsx,vue}"
   },
   "keywords": [
     "headless",

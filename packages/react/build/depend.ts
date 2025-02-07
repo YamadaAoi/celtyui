@@ -60,7 +60,7 @@ function getComponent(path: string, graph: madge.MadgeModuleDependencyGraph) {
   let component: ComponentInfo | undefined
   const arr = path?.split('/')
   // index.vue才是暴露出去的组件
-  if (arr?.length && arr.length > 2 && arr[arr.length - 1] === 'index.vue') {
+  if (arr?.length && arr.length > 2 && arr[arr.length - 1] === 'index.tsx') {
     // 以组件所处文件夹名为组件名
     const folder = arr[arr.length - 2]
     const name = folder[0].toUpperCase() + folder.substring(1)
@@ -75,7 +75,7 @@ function getComponent(path: string, graph: madge.MadgeModuleDependencyGraph) {
 
 async function main() {
   const res = await madge(sourceDir, {
-    fileExtensions: ['ts', 'tsx', 'vue', 'scss'],
+    fileExtensions: ['ts', 'tsx', 'scss'],
     excludeRegExp: [/demo/, /demoAble/],
     tsConfig: tsJson
   })
