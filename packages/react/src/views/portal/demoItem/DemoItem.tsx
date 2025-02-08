@@ -90,7 +90,7 @@ export default function DemoItem(props: DemoProps) {
           }}>
           <div ref={demoItem} className="demo-content">
             <div style={style} className="demo">
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={'Loading...'}>
                 {DynamicComponent ? <DynamicComponent /> : <></>}
               </Suspense>
             </div>

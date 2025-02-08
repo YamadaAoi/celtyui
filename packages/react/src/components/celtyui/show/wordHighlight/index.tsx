@@ -28,9 +28,13 @@ export default function WordHighlight(props: WordHighlightProps) {
   return props.text && filterText
     ? props.text
         .split(new RegExp(`(?<=${filterText})|(?=${filterText})`, 'i'))
-        .map((str: string) => {
+        .map((str: string, i: number) => {
           if (str.toLowerCase() === props.keywords?.toLowerCase()) {
-            return <mark style={{ color: 'red' }}>{str}</mark>
+            return (
+              <mark key={i} style={{ color: 'red' }}>
+                {str}
+              </mark>
+            )
           } else {
             return str
           }

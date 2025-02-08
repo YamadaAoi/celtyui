@@ -35,7 +35,7 @@ export default function Demo() {
 
   return (
     <div className="demo">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={'Loading...'}>
         {DynamicComponent ? <DynamicComponent /> : <></>}
       </Suspense>
       <div className={show ? 'demo-code' : 'demo-code hide-code'}>
