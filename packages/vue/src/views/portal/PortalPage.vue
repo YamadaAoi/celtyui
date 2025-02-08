@@ -22,7 +22,7 @@
         <div class="demo-wrap">
           <NVirtualList
             class="demo-list"
-            :items="demoList"
+            :items="store.demoList"
             :item-size="pxNow(268)"
           >
             <template #default="{ item }">
@@ -42,7 +42,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import { NVirtualList, NInput } from 'naive-ui'
 import { useRem } from '@mo-yu/vue'
 import Header from './header/Header.vue'
@@ -52,15 +51,6 @@ import { useMenuStore } from './menu/useMenu'
 
 const store = useMenuStore()
 const { pxNow } = useRem()
-const demoList = computed(() => {
-  const list: any[] = []
-  for (let i = 0; i < store.curDemos.length; i += 5) {
-    list.push({
-      row: store.curDemos.slice(i, i + 5)
-    })
-  }
-  return list
-})
 </script>
 
 <style scoped lang="scss">
@@ -94,7 +84,7 @@ const demoList = computed(() => {
       }
       .demo-wrap {
         width: 100%;
-        width: calc(100% - 56px);
+        height: calc(100% - 56px);
         padding: 16px 8px;
         .demo-list {
           width: 100%;

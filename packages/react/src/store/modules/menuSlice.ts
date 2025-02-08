@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit'
 import { getDemos } from 'src/components/celtyui/demoAble'
 import { IDemo, IDemoInfo, getDemoTree } from 'root/utils/demos'
 import type { RootState } from '../store'
@@ -30,31 +30,44 @@ const menuSlice = createSlice({
   }
 })
 
-export const { handleSelect, onFilterChange } = menuSlice.actions
-
-export const curDemos = (state: RootState) => {
-  let demos: IDemoInfo[] = []
-  if (state.menu.selectMenu) {
-    demos = Object.keys(getDemos())
-      .filter(d => d.startsWith(`./${state.menu.selectMenu}`))
-      .map(p => {
-        const arr = p.split('/')
-        const pathArr = arr.slice(0, arr.length - 2)
-        const folder = pathArr[pathArr.length - 1]
-        const name = folder[0].toUpperCase() + folder.substring(1)
-        const path = pathArr.join('/')
-        return {
-          name,
-          path
-        }
+export const demoList = createSelector(
+  [
+    (state: RootState) => state.menu.selectMenu,
+    (state: RootState) => state.menu.filterText
+  ],
+  (selectMenu, filterText) => {
+    const list: Array<{ row: IDemoInfo[]; id: string }> = []
+    let demos: IDemoInfo[] = []
+    if (selectMenu) {
+      demos = Object.keys(getDemos())
+        .filter(d => d.startsWith(`./${selectMenu}`))
+        .map(p => {
+          const arr = p.split('/')
+          const pathArr = arr.slice(0, arr.length - 2)
+          const folder = pathArr[pathArr.length - 1]
+          const name = folder[0].toUpperCase() + folder.substring(1)
+          const path = pathArr.join('/')
+          return {
+            name,
+            path
+          }
+        })
+        .filter(
+          p =>
+            !filterText ||
+            p.name.toUpperCase().includes(filterText.toUpperCase())
+        )
+    }
+    for (let i = 0; i < demos.length; i += 5) {
+      list.push({
+        id: `${i}`,
+        row: demos.slice(i, i + 5)
       })
-      .filter(
-        p =>
-          !state.menu.filterText ||
-          p.name.toUpperCase().includes(state.menu.filterText.toUpperCase())
-      )
+    }
+    return list
   }
-  return demos
-}
+)
+
+export const { handleSelect, onFilterChange } = menuSlice.actions
 
 export default menuSlice.reducer

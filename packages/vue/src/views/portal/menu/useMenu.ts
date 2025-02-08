@@ -8,7 +8,8 @@ export const useMenuStore = defineStore('menus', () => {
   const selectMenu = ref(defaultMenu)
   const menuTree = ref<IDemo[]>(tree)
   const filterText = ref('')
-  const curDemos = computed(() => {
+  const demoList = computed(() => {
+    const list: Array<{ row: IDemoInfo[] }> = []
     let demos: IDemoInfo[] = []
     if (selectMenu.value) {
       demos = Object.keys(getDemos())
@@ -30,7 +31,12 @@ export const useMenuStore = defineStore('menus', () => {
             p.name.toUpperCase().includes(filterText.value.toUpperCase())
         )
     }
-    return demos
+    for (let i = 0; i < demos.length; i += 5) {
+      list.push({
+        row: demos.slice(i, i + 5)
+      })
+    }
+    return list
   })
 
   function handleSelect(menu: any) {
@@ -44,7 +50,7 @@ export const useMenuStore = defineStore('menus', () => {
 
   return {
     menuTree,
-    curDemos,
+    demoList,
     selectMenu,
     filterText,
     handleSelect,
