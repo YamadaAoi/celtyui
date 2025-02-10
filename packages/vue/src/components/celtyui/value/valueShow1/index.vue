@@ -5,7 +5,7 @@
       <div class="name">{{ props.data.label }}</div>
       <div class="data">
         <div class="value">
-          <MAniNumber :value="props.data.value ?? 0" />
+          <AniNumber :value="props.data.value ?? 0" />
         </div>
         <div class="unit">{{ props.data.unit }}</div>
       </div>
@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { MAniNumber } from '@mo-yu/vue'
+import AniNumber from '../aniNumber/index.vue'
 
 const props = defineProps<{
   data: {

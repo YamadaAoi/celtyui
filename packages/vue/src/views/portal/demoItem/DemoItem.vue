@@ -9,7 +9,7 @@
     </div>
     <div class="label" @click="handleCopy(props.demo.name)">
       <i class="iconfont icon-fuzhi" />
-      <MHighlight :text="props.demo.name" :word="store.filterText" />
+      <WordHighlight :text="props.demo.name" :keywords="store.filterText" />
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { onMounted, ref, markRaw, StyleValue, watchEffect } from 'vue'
 import { useMessage } from 'naive-ui'
-import { MHighlight } from '@mo-yu/vue'
+import WordHighlight from 'src/components/celtyui/show/wordHighlight/index.vue'
 import { useMenuStore } from '../menu/useMenu'
 import { IDemoInfo } from 'root/utils/demos'
 import { getDemos } from 'src/components/celtyui/demoAble'

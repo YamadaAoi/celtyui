@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import { NVirtualList, NInput } from 'naive-ui'
-import { useRem } from '@mo-yu/vue'
+import { useRem } from 'src/components/celtyui/util/useRem'
 import Header from './header/Header.vue'
 import MenuPage from './menu/MenuPage'
 import DemoItem from './demoItem/DemoItem.vue'

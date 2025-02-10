@@ -11,7 +11,7 @@
         <div class="name">{{ item.label }}</div>
         <div class="data">
           <div class="value">
-            <MAniNumber :value="item.value" />
+            <AniNumber :value="item.value" />
           </div>
           <div class="unit">{{ item.unit }}</div>
         </div>
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { MAniNumber } from '@mo-yu/vue'
+import AniNumber from '../aniNumber/index.vue'
 
 const props = defineProps<{
   info: {

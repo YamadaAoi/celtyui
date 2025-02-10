@@ -11,7 +11,6 @@ interface AniNumberProps {
 
 export default function AniNumber(props: AniNumberProps) {
   const raf = useRef<number | undefined>(undefined)
-  const [to, setTo] = useState(0)
   const [precision, setPrecision] = useState<number | undefined>(
     props.precision
   )
@@ -20,12 +19,18 @@ export default function AniNumber(props: AniNumberProps) {
 
   useEffect(() => {
     animate()
+    return () => {
+      if (undefined !== raf.current) {
+        cancelAnimationFrame(raf.current)
+      }
+    }
   }, [props])
 
   function animate() {
     if (undefined !== raf.current) {
       cancelAnimationFrame(raf.current)
     }
+    let to = 0
     setDisplayedValue(0)
     if (isNumber(props.value)) {
       if (props.precision === undefined) {
@@ -38,9 +43,9 @@ export default function AniNumber(props: AniNumberProps) {
       } else {
         setPrecision(props.precision)
       }
-      setTo(Number(props.value))
+      to = Number(props.value)
     } else {
-      setTo(0)
+      to = 0
     }
     if (to !== 0 && active) {
       tween(to, props.duration ?? 2000)

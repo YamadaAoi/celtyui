@@ -3,7 +3,7 @@
     <div class="val">
       <img :src="props.data.icon" alt="" />
       <div class="num">
-        <MAniNumber :value="props.data.value ?? 0" />
+        <AniNumber :value="props.data.value ?? 0" />
         <span class="unit">{{ props.data.unit }}</span>
       </div>
     </div>
@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { MAniNumber } from '@mo-yu/vue'
+import AniNumber from '../aniNumber/index.vue'
 
 const props = defineProps<{
   data: {
