@@ -1,6 +1,6 @@
 <template>
-  <div class="line-chart">
-    <GeoLines
+  <div class="geo-color">
+    <GeoColor
       url="https://geo.datav.aliyun.com/areas_v3/bound/410600_full.json"
       :points="points"
       :max="500"
@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import GeoLines from 'src/components/celtyui/charts/geo/geoColor1/index.vue'
+import GeoColor from 'src/components/celtyui/charts/geo/geoColor1/index.vue'
 
 const points: any[] = [
   { name: '鹤山区', value: 320 },
@@ -22,7 +22,7 @@ const points: any[] = [
 </script>
 
 <style scoped lang="scss">
-.line-chart {
+.geo-color {
   width: 800px;
   height: 450px;
   background-color: #062040;

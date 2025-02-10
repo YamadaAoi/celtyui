@@ -1,39 +1,3 @@
-<template>
-  <div class="value-show3">
-    <div class="icon">
-      <img :src="props.info?.icon" alt="" />
-      <div v-if="undefined !== props.info?.num" class="num">
-        {{ props.info.num }}
-      </div>
-    </div>
-    <div :style="{ background: props.info?.bg }" class="wrap">
-      <div v-for="(item, i) in props.info?.data ?? []" :key="i" class="content">
-        <div class="name">{{ item.label }}</div>
-        <div class="data">
-          <div class="value">
-            <MAniNumber :value="item.value" />
-          </div>
-          <div class="unit">{{ item.unit }}</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script setup lang="ts">
-import { MAniNumber } from '@mo-yu/vue'
-
-const props = defineProps<{
-  info: {
-    icon: string
-    bg: string
-    data: Array<{ label: string; value: number; unit: string }>
-    num?: number
-  }
-}>()
-</script>
-
-<style scoped lang="scss">
 .value-show3 {
   width: 100%;
   height: 100%;
@@ -99,4 +63,3 @@ const props = defineProps<{
     }
   }
 }
-</style>

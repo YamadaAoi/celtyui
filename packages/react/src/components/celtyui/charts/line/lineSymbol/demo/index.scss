@@ -1,0 +1,10 @@
+.lines {
+  display: flex;
+  flex-wrap: wrap;
+  .line-chart {
+    width: 450px;
+    height: 270px;
+    background-color: #062040;
+    margin: 8px;
+  }
+}

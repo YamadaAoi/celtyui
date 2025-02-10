@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { EChartsOption, ECharts, init } from 'echarts'
 
 export interface ChartsOption {
@@ -10,7 +10,7 @@ export default function useCharts(
   options: ChartsOption,
   onclick?: (param: any) => void
 ) {
-  let myChart: ECharts | undefined
+  const myChart = useRef<ECharts | undefined>(undefined)
   const [chartId, setChartId] = useState('')
 
   useEffect(() => {
@@ -24,8 +24,8 @@ export default function useCharts(
   useEffect(() => {
     if (options?.chartId) {
       if (options.chartId !== chartId) {
-        setChartId(options.chartId)
         clearChart()
+        setChartId(options.chartId)
         initChart(options.chartId)
       }
       refresh(options.option)
@@ -36,34 +36,38 @@ export default function useCharts(
 
   function listenResize() {
     setTimeout(() => {
-      myChart?.resize()
+      myChart.current?.resize()
     }, 300)
   }
 
   function clearChart() {
-    if (myChart) {
-      myChart.dispose()
-      myChart = undefined
+    setChartId('')
+    if (myChart.current) {
+      myChart.current.dispose()
+      myChart.current = undefined
     }
   }
 
   function refresh(opts?: EChartsOption) {
-    if (opts && myChart) {
-      myChart.setOption(opts, true)
+    if (opts && myChart.current) {
+      myChart.current.setOption(opts, true)
     }
   }
 
   function initChart(chartId: string) {
     const chartEle: any = document.getElementById(chartId) as HTMLDivElement
     if (chartEle) {
-      myChart = init(chartEle)
+      myChart.current = init(chartEle)
       if (onclick) {
-        myChart.on('click', onclick)
+        myChart.current?.on('click', onclick)
       }
+    } else {
+      setChartId('')
     }
   }
 
   return {
+    chartId,
     clearChart
   }
 }

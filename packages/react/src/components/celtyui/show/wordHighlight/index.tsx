@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 
 interface WordHighlightProps {
   text: string
@@ -6,9 +6,7 @@ interface WordHighlightProps {
 }
 
 export default function WordHighlight(props: WordHighlightProps) {
-  const [filterText, setFilterText] = useState(props.keywords)
-
-  useEffect(() => {
+  const filterText = useMemo(() => {
     const origin = props.keywords ? `${props.keywords}` : ''
     let str = origin
     if (/(\+|-|&|\||!|\(|\)|\{|\}|\[|\]|\^|”|~|\*|\?|:|\\)/g.test(origin)) {
@@ -22,7 +20,7 @@ export default function WordHighlight(props: WordHighlightProps) {
         }`
       )
     }
-    setFilterText(str)
+    return str
   }, [props.keywords])
 
   return props.text && filterText

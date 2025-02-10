@@ -1,5 +1,5 @@
 <template>
-  <div class="line-chart">
+  <div class="geo-lines">
     <GeoLines
       url="https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json"
       :points="points"
@@ -42,7 +42,7 @@ const points: any[] = [
 </script>
 
 <style scoped lang="scss">
-.line-chart {
+.geo-lines {
   width: 800px;
   height: 450px;
   background-color: #062040;
