@@ -9,5 +9,8 @@ import AniNumber from 'src/components/celtyui/value/aniNumber/index.vue'
 <style scoped lang="scss">
 .ani-number-demo {
   width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
