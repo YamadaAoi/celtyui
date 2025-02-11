@@ -1,5 +1,11 @@
 # celtyui
 
+## 1.0.3
+
+### Patch Changes
+
+- 部分vue组件内依赖路径优化
+
 ## 1.0.2
 
 ### Patch Changes
