@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { remTool } from '@mo-yu/core'
+import { remTool } from '../../util/remTool'
 
 /**
  * rem hook

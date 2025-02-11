@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { EChartsOption } from 'echarts'
-import useCharts, { ChartsOption } from './useChart'
+import useEcharts, { ChartsOption } from '../../hooks/useEcharts'
 import { genUuid } from '../../util/genUuid'
 
 interface CommonChartProps {
@@ -10,7 +10,7 @@ interface CommonChartProps {
 export default function CommonChart(props: CommonChartProps) {
   const id = useRef(genUuid())
   const [option, setOption] = useState<ChartsOption>({ chartId: '' })
-  const { chartId, clearChart } = useCharts(option)
+  const { chartId, clearChart } = useEcharts(option)
   const computedOption = useMemo(() => {
     return {
       chartId: id.current,

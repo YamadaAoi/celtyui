@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { EChartsOption, registerMap } from 'echarts'
-import useCharts, { ChartsOption } from '../../commonChart/useChart'
+import useEchart, { ChartsOption } from '../../../hooks/useEcharts'
 import { genUuid } from '../../../util/genUuid'
 
 interface GeoLines1Props {
@@ -18,7 +18,7 @@ interface GeoLines1Props {
 export default function GeoLines1(props: GeoLines1Props) {
   const id = useRef(genUuid())
   const [option, setOption] = useState<ChartsOption>({ chartId: '' })
-  const { chartId, clearChart } = useCharts(option)
+  const { chartId, clearChart } = useEchart(option)
   const computedOption = useMemo(() => {
     return {
       chartId: id.current,

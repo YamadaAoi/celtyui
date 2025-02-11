@@ -12,7 +12,7 @@ export default function BarPictorialDemo() {
         <BarChart data={data} symbol={0} yName="单位/件" />
       </div>
       <div className="bar-chart">
-        <BarChart data={data} symbol={0} yName="单位/件" />
+        <BarChart data={data} symbol={1} yName="单位/件" />
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { remTool } from '@mo-yu/core'
+import { remTool } from '../../util/remTool'
 
 /**
  * rem hook

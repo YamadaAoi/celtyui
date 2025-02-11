@@ -6,8 +6,8 @@
 import { onMounted, onBeforeUnmount, reactive, watch } from 'vue'
 import { EChartsOption, registerMap } from 'echarts'
 import { genUuid } from 'src/components/celtyui/util/genUuid'
-import useCharts, { ChartsOption } from '../../commonChart/useChart'
-import { getDefaultColors } from '../../commonChart/utils'
+import useEcharts, { ChartsOption } from '../../../hooks/useEcharts'
+import { getDefaultColors } from '../../commonChart/chartsConfig'
 
 interface GeoData {
   url: string
@@ -24,7 +24,7 @@ interface GeoData {
 
 const props = defineProps<GeoData>()
 const chartOption: ChartsOption = reactive({ chartId: '' })
-const { clearChart } = useCharts(chartOption)
+const { clearChart } = useEcharts(chartOption)
 const chartId = genUuid()
 
 onMounted(() => {

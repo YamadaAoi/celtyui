@@ -6,7 +6,7 @@ export interface ChartsOption {
   option?: EChartsOption
 }
 
-export default function useCharts(
+export default function useEcharts(
   options: ChartsOption,
   onclick?: (param: any) => void
 ) {

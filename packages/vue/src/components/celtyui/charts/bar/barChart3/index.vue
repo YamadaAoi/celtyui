@@ -6,7 +6,7 @@
 import { computed } from 'vue'
 import { EChartsOption } from 'echarts'
 import CommonChart from '../../commonChart/index.vue'
-import { getDefaultColors } from '../../commonChart/utils'
+import { getDefaultColors } from '../../commonChart/chartsConfig'
 
 const props = defineProps<{
   data: Array<{

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { EChartsOption } from 'echarts'
 import CommonChart from '../../commonChart'
-import { getDefaultColors } from '../../commonChart/utils'
+import { getDefaultColors } from '../../commonChart/chartsConfig'
 
 interface PieChart2Props {
   data: Array<{

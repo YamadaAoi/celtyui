@@ -19,7 +19,6 @@
   "author": "zhouyinkui",
   "license": "ISC",
   "devDependencies": {
-    "@mo-yu/core": "^1.0.16",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
     "eslint-plugin-vue": "^9.32.0",

@@ -6,13 +6,13 @@
 import { onMounted, onBeforeUnmount, reactive, watch } from 'vue'
 import { EChartsOption } from 'echarts'
 import { genUuid } from 'src/components/celtyui/util/genUuid'
-import useCharts, { ChartsOption } from './useChart'
+import useEcharts, { ChartsOption } from '../../hooks/useEcharts'
 
 const props = defineProps<{
   option?: EChartsOption
 }>()
 const chartOption: ChartsOption = reactive({ chartId: '' })
-const { clearChart } = useCharts(chartOption)
+const { clearChart } = useEcharts(chartOption)
 const chartId = genUuid()
 
 onMounted(() => {

@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'
-import { remTool } from '@mo-yu/core'
+import { remTool } from 'src/components/celtyui/util/remTool'
 import 'root/assets/app.scss'
 import 'root/assets/iconfont/iconfont.css'
 import router from './router'

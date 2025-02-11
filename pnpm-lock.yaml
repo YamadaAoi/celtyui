@@ -160,9 +160,6 @@ importers:
 
   packages/react:
     devDependencies:
-      '@mo-yu/core':
-        specifier: ^1.0.16
-        version: 1.0.16
       '@reduxjs/toolkit':
         specifier: ^2.5.1
         version: 2.5.1(react-redux@9.2.0(@types/react@19.0.8)(react@19.0.0)(redux@5.0.1))(react@19.0.0)
@@ -202,9 +199,6 @@ importers:
 
   packages/vue:
     devDependencies:
-      '@mo-yu/core':
-        specifier: ^1.0.16
-        version: 1.0.16
       '@vitejs/plugin-vue':
         specifier: ^5.2.1
         version: 5.2.1(vite@6.1.0(@types/node@22.13.1)(sass-embedded@1.83.4)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.7.3))
@@ -1640,12 +1634,6 @@ packages:
     resolution:
       {
         integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==
-      }
-
-  '@mo-yu/core@1.0.16':
-    resolution:
-      {
-        integrity: sha512-qwD0l5xXj+ufnq4UOoASgSV1RsnUCqGlz0NBV88Ubkv8Ra6g6+2Kq9Q/GR0sumDA4w3qYd403SJVExzHohKCoQ==
       }
 
   '@nodelib/fs.scandir@2.1.5':
@@ -9281,8 +9269,6 @@ snapshots:
       fs-extra: 8.1.0
       globby: 11.1.0
       read-yaml-file: 1.1.0
-
-  '@mo-yu/core@1.0.16': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:

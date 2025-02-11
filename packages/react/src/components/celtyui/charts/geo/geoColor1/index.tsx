@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { EChartsOption, registerMap } from 'echarts'
-import { getDefaultColors } from '../../commonChart/utils'
-import useCharts, { ChartsOption } from '../../commonChart/useChart'
+import { getDefaultColors } from '../../commonChart/chartsConfig'
+import useEchart, { ChartsOption } from '../../../hooks/useEcharts'
 import { genUuid } from '../../../util/genUuid'
 
 interface GeoColor1Props {
@@ -20,7 +20,7 @@ interface GeoColor1Props {
 export default function GeoColor1(props: GeoColor1Props) {
   const id = useRef(genUuid())
   const [option, setOption] = useState<ChartsOption>({ chartId: '' })
-  const { chartId, clearChart } = useCharts(option)
+  const { chartId, clearChart } = useEchart(option)
   const computedOption = useMemo(() => {
     return {
       chartId: id.current,
