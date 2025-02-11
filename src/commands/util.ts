@@ -10,6 +10,7 @@ import { magenta, yellow, blue, green } from 'kleur/colors'
 export interface ComponentInfo {
   name: string
   path: string
+  type: 'component' | 'method'
   dependencies: string[]
 }
 

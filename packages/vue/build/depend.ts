@@ -59,15 +59,29 @@ function getDependencies(
 function getComponent(path: string, graph: madge.MadgeModuleDependencyGraph) {
   let component: ComponentInfo | undefined
   const arr = path?.split('/')
-  // index.vue才是暴露出去的组件
-  if (arr?.length && arr.length > 2 && arr[arr.length - 1] === 'index.vue') {
-    // 以组件所处文件夹名为组件名
-    const folder = arr[arr.length - 2]
-    const name = folder[0].toUpperCase() + folder.substring(1)
-    component = {
-      name,
-      path,
-      dependencies: getDependencies(path, graph)
+  if (arr?.length && arr.length > 2) {
+    // index.vue才是暴露出去的组件
+    if (arr[arr.length - 1] === 'index.vue') {
+      // 以组件所处文件夹名为组件名
+      const folder = arr[arr.length - 2]
+      const name = folder[0].toUpperCase() + folder.substring(1)
+      component = {
+        name,
+        path,
+        type: 'component',
+        dependencies: getDependencies(path, graph)
+      }
+    }
+    // index.ts才是暴露出去的方法
+    if (arr[arr.length - 1] === 'index.ts') {
+      // 以方法所处文件夹名为方法名
+      const name = arr[arr.length - 2]
+      component = {
+        name,
+        path,
+        type: 'method',
+        dependencies: getDependencies(path, graph)
+      }
     }
   }
   return component

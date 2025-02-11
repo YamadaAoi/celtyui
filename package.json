@@ -1,6 +1,6 @@
 {
   "name": "celtyui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "headless源码组件库",
   "bin": "./es/index.mjs",
   "types": "./es/types/src/index.d.ts",
@@ -11,7 +11,8 @@
     "clean": "rimraf es",
     "build-bin": "rollup --config build/rollup.config.ts --configPlugin typescript",
     "build-ui": "pnpm -r --filter \"celtyui-*\" build",
-    "build": "run-s clean build-bin build-ui copy",
+    "build-code": "run-p build-bin build-ui",
+    "build": "run-s clean build-code copy",
     "copy": "esno build/copy.ts",
     "dev-vue": "pnpm --filter \"celtyui-vue\" dev",
     "build-vue": "pnpm --filter \"celtyui-vue\" build",
