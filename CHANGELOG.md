@@ -1,5 +1,11 @@
 # celtyui
 
+## 1.0.4
+
+### Patch Changes
+
+- lib加载器添加
+
 ## 1.0.3
 
 ### Patch Changes
