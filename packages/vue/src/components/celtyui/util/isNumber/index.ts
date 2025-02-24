@@ -4,5 +4,8 @@
  * @returns
  */
 export function isNumber(value: any) {
-  return parseFloat(`${value}`).toString() !== 'NaN'
+  return (
+    Number(value).toString() !== 'NaN' &&
+    parseFloat(`${value}`).toString() !== 'NaN'
+  )
 }
