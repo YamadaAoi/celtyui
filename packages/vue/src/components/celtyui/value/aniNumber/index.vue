@@ -1,5 +1,5 @@
 <template>
-  {{ displayedValue.toFixed(precision) }}
+  {{ displayedValue.toFixed(accuracy) }}
 </template>
 
 <script setup lang="ts">
@@ -10,20 +10,15 @@ defineOptions({
   inheritAttrs: false
 })
 
-const props = withDefaults(
-  defineProps<{
-    value?: number
-    precision?: number
-    active?: boolean
-    duration?: number
-    onFinish?: () => void
-  }>(),
-  {
-    active: true
-  }
-)
+const props = defineProps<{
+  value?: number
+  precision?: number
+  disable?: boolean
+  duration?: number
+  onFinish?: () => void
+}>()
 const raf = ref<number | undefined>()
-const precision = ref(0)
+const accuracy = ref(0)
 const displayedValue = ref(0)
 
 watch(
@@ -52,19 +47,23 @@ function animate() {
     if (props.precision === undefined) {
       const valueStr = `${props.value}`
       if (valueStr.includes('.')) {
-        precision.value = valueStr.length - 1 - valueStr.indexOf('.')
+        accuracy.value = valueStr.length - 1 - valueStr.indexOf('.')
       } else {
-        precision.value = 0
+        accuracy.value = 0
       }
     } else {
-      precision.value = props.precision
+      accuracy.value = props.precision
     }
     to = Number(props.value)
   } else {
     to = 0
   }
-  if (to !== 0 && props.active) {
-    tween(to, props.duration ?? 2000)
+  if (to !== 0) {
+    if (props.disable) {
+      displayedValue.value = to
+    } else {
+      tween(to, props.duration ?? 2000)
+    }
   }
 }
 
