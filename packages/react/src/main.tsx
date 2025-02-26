@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { HashRouter } from 'react-router'
+import { BrowserRouter } from 'react-router'
 import { remTool } from 'src/components/celtyui/util/remTool'
 import 'root/assets/app.scss'
 import 'root/assets/iconfont/iconfont.css'
@@ -17,9 +17,9 @@ remTool.enable()
 createRoot(document.getElementById('app')!).render(
   <StrictMode>
     <Provider store={store}>
-      <HashRouter>
+      <BrowserRouter>
         <App />
-      </HashRouter>
+      </BrowserRouter>
     </Provider>
   </StrictMode>
 )

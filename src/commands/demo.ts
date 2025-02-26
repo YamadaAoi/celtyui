@@ -3,7 +3,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { Command } from 'commander'
 import { z } from 'zod'
-import { readJson, pathExists } from 'fs-extra'
+import { readJson, pathExists, createReadStream } from 'fs-extra'
 import Koa from 'koa'
 import serve from 'koa-static'
 import open from 'open'
@@ -33,7 +33,12 @@ async function handleDemo(opts: any) {
   const port = Number(options.port ?? config?.port ?? '3210')
   const lang = options.lang ?? config?.lang ?? 'vue'
   const app = new Koa()
-  app.use(serve(path.resolve(__dirname, lang, 'demo')))
+  const demoPath = path.resolve(__dirname, lang, 'demo')
+  app.use(serve(demoPath))
+  app.use(async ctx => {
+    ctx.type = 'html'
+    ctx.body = createReadStream(path.join(demoPath, 'index.html'))
+  })
   app.listen(port, () => {
     log.success(`启动demo页面 [http://localhost:${port}] 成功！`)
     open(`http://localhost:${port}`)

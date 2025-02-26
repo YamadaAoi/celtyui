@@ -76,7 +76,7 @@ export default function DemoItem(props: DemoProps) {
   }
 
   function toDemo(path: string) {
-    window.open(`${window.location.origin}/#/demo?dir=${path}`, '_blank')
+    window.open(`${window.location.origin}/demo?dir=${path}`, '_blank')
   }
 
   return (
