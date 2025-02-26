@@ -1,5 +1,11 @@
 # celtyui
 
+## 1.0.5
+
+### Patch Changes
+
+- 添加一种value，两种loading
+
 ## 1.0.4
 
 ### Patch Changes

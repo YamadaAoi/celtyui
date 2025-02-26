@@ -1,6 +1,6 @@
 {
   "name": "celtyui",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "headless源码组件库",
   "bin": "./es/index.mjs",
   "types": "./es/types/src/index.d.ts",
