@@ -9,7 +9,7 @@ export default function ValueShow3Demo() {
       {
         label: '面积',
         value: 26231,
-        unit: '个'
+        unit: '亩'
       },
       {
         label: '同比',
@@ -32,10 +32,10 @@ export default function ValueShow3Demo() {
 
   return (
     <div className="value-show">
-      <div className="data">
+      <div className="data-show">
         <ValueShow info={data1} />
       </div>
-      <div className="data">
+      <div className="data-show">
         <ValueShow info={data2} />
       </div>
     </div>
