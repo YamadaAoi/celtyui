@@ -22,12 +22,38 @@ celtyui是一个headless UI 库，名字出自《无头骑士异闻录》角色�
 
 ```bash
 $ npx celtyui@latest -h
-$ npx celtyui@latest init -h
-$ npx celtyui@latest add -h
-$ npx celtyui@latest demo -h
+
+Usage: celtyui [options] [command]
+
+添加组件源码（vue3 or react）到您的项目中
+
+Options:
+  -v, --version                  显式版本号
+  -h, --help                     display help for command
+
+Commands:
+  init [options]                 初始化配置文件 [celtyui.json] 到您项目的根目录中
+  add [options] [components...]  添加组件源码（vue3 or react）到您的项目中
+  demo [options]                 启动本地服务器打开 [celtyui] 内置 demo 页面
+  help [command]                 display help for command
 ```
 
 ### 初始化配置（可选）
+
+```bash
+$ npx celtyui@latest init -h
+
+Usage: celtyui init [options]
+
+初始化配置文件 [celtyui.json] 到您项目的根目录中
+
+Options:
+  -c, --cwd <cwd>    工作目录，默认当前位置 (default: "xxxxxx\\celtyui")
+  -p, --path <path>  组件存放路径，默认 src/components (default: "src/components")
+  -t, --port <port>  demo页面监听端口 (default: "3210")
+  -l, --lang <lang>  框架类型（vue or react） (default: "vue")
+  -h, --help         display help for command
+```
 
 可以配置一些参数，目前有：
 
@@ -39,18 +65,39 @@ $ npx celtyui@latest demo -h
 }
 ```
 
-```bash
-$ npx celtyui@latest init
-```
-
 ### 添加组件
 
 ```bash
-$ npx celtyui@latest add [components]
+$ npx celtyui@latest add -h
+
+Usage: celtyui add [options] [components...]
+
+添加组件源码（vue3 or react）到您的项目中
+
+Arguments:
+  components         需要添加的组件
+
+Options:
+  -c, --cwd <cwd>    工作目录，默认当前位置 (default: "xxxxxx\\celtyui")
+  -o, --overwrite    覆盖已有的同名组件文件 (default: false)
+  -a, --all          添加库内所有组件到您的项目中 (default: false)
+  -p, --path <path>  组件存放路径，默认 src/components
+  -l, --lang <lang>  框架类型（vue or react），默认vue
+  -h, --help         display help for command
 ```
 
 ### 查看demo
 
 ```bash
-$ npx celtyui@latest demo
+$ npx celtyui@latest demo -h
+
+Usage: celtyui demo [options]
+
+启动本地服务器打开 [celtyui] 内置 demo 页面
+
+Options:
+  -c, --cwd <cwd>    工作目录，默认当前位置 (default: "D:\\codes\\github\\celtyui")
+  -p, --port <port>  demo页面监听端口，默认3210
+  -l, --lang <lang>  框架类型（vue or react），默认vue
+  -h, --help         display help for command
 ```
