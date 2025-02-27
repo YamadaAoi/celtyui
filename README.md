@@ -96,7 +96,7 @@ Usage: celtyui demo [options]
 启动本地服务器打开 [celtyui] 内置 demo 页面
 
 Options:
-  -c, --cwd <cwd>    工作目录，默认当前位置 (default: "D:\\codes\\github\\celtyui")
+  -c, --cwd <cwd>    工作目录，默认当前位置 (default: "xxxxxx\\celtyui")
   -p, --port <port>  demo页面监听端口，默认3210
   -l, --lang <lang>  框架类型（vue or react），默认vue
   -h, --help         display help for command
