@@ -1,5 +1,11 @@
 # celtyui
 
+## 1.0.6
+
+### Patch Changes
+
+- value 5 添加；readme内容丰富
+
 ## 1.0.5
 
 ### Patch Changes
